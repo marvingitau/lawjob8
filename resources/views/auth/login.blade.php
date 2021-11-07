@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('Backend.layouts.app')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
 
@@ -39,6 +39,55 @@
                             </div>
                         </div>
 
+                        <div class="form-group row my-md-3">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="role" id="Candid" value="candidate" checked required>
+                                    <label class="form-check-label" for="Candid">
+                                      Candidate
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="role" id="Employ" value="employer">
+                                    <label class="form-check-label" for="Employ">
+                                      Employer
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        {{-- <div class="form-group row my-2">
+                            <label for="candidate" class="col-md-4 col-form-label text-md-right">{{ __('Candidate') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="candidate" type="checkbox" name="role" value="candidate" data-toggle="toggle" data-onstyle="outline-primary" data-offstyle="outline-secondary">
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row my-2">
+                            <label for="employer" class="col-md-4 col-form-label text-md-right">{{ __('Employer') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="employer" type="checkbox"  name="role" value="employer"  data-toggle="toggle" data-onstyle="outline-primary" data-offstyle="outline-secondary" required>
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div> --}}
+
+
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">
@@ -50,6 +99,8 @@
                                 </div>
                             </div>
                         </div>
+
+
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">

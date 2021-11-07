@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,QAAQ,CAAC,eAAe,CAAC;EACrB,OAAO,EAAE,sBAAsB;CAIlC;;AALD,AAEI,QAFI,CAAC,eAAe,CAEpB,SAAS,CAAC;EACN,KAAK,EAAE,eAAe;CACzB",
+    "sources": [
+        "master-custom.scss"
+    ],
+    "names": [],
+    "file": "master-custom.css"
+}

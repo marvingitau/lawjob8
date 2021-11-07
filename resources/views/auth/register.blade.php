@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('Backend.layouts.app')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
 
@@ -60,6 +60,27 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
+
+                        <div class="form-group row my-md-3">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="role" id="Candid" value="candidate" checked required>
+                                    <label class="form-check-label" for="Candid">
+                                      Candidate
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="role" id="Employ" value="employer">
+                                    <label class="form-check-label" for="Employ">
+                                      Employer
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

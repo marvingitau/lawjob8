@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Http\Request;
 use Laravel\LegacyUi\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -26,7 +28,26 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
+    public function redirectTo() {
+        $role = Auth::user()->role;
+        // dd($role);
+        switch ($role) {
+            case 'admin':
+                return '/admin';
+            break;
+            case 'employer':
+                return '/employer';
+            break;
+            case 'candidate':
+                return '/candidate';
+            break;
+
+            default:
+                return '/';
+            break;
+        }
+    }
 
     /**
      * Create a new controller instance.
@@ -37,4 +58,38 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    // /**
+    //  * Handle an authentication attempt.
+    //  *
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function login(Request $request)
+    // {
+    //     $credentials = $request->validate([
+    //         'email' => ['required', 'email'],
+    //         'password' => ['required'],
+    //         'role'=>['required'],
+    //     ]);
+    //     // dd($credentials);
+    //     if (Auth::attempt($credentials)) {
+    //         $request->session()->regenerate();
+
+    //         $this->redirectTo();
+    //         // return redirect()->intended('dashboard');
+    //     }
+
+    //     return back()->withErrors([
+    //         'email' => 'The provided credentials do not match our records.',
+    //     ]);
+    // }
+
+    public function AdminLoginForm()
+    {
+        return view('auth.AdminLogin');
+    }
+
+
+
 }
