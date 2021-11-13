@@ -1,19 +1,53 @@
 /*------------------------------------------------------------------
 * Bootstrap Simple Admin Template
-* Version: 2.0
+* Version: 3.0
 * Author: Alexis Luna
-* Copyright 2020 Alexis Luna
 * Website: https://github.com/alexis-luna/bootstrap-simple-admin-template
 -------------------------------------------------------------------*/
-// Toggle sidebar on Menu button click
-$('#sidebarCollapse').on('click', function() {
-    $('#sidebar').toggleClass('active');
-    $('#body').toggleClass('active');
-});
+(function() {
+    'use strict';
 
-// Auto-hide sidebar on window resize if window size is small
-// $(window).on('resize', function () {
-//     if ($(window).width() <= 768) {
-//         $('#sidebar, #body').addClass('active');
-//     }
-// });
+    // Toggle sidebar on Menu button click
+    $('#sidebarCollapse').on('click', function() {
+        $('#sidebar').toggleClass('active');
+        $('#body').toggleClass('active');
+    });
+
+    // Auto-hide sidebar on window resize if window size is small
+    // $(window).on('resize', function () {
+    //     if ($(window).width() <= 768) {
+    //         $('#sidebar, #body').addClass('active');
+    //     }
+    // });
+
+    // Call the dataTables jQuery plugin
+    $(document).ready(function() {
+        $('#jobList').DataTable(
+            {
+                responsive: true,
+                pageLength: 10,
+                lengthChange: false,
+                searching: true,
+                ordering: true
+            }
+        );
+        $('#phone').change(function(){
+            var x=$( this ).val();
+            // alert(x);
+            var regex=/^\+?([0-9]{9})$/;
+            // var regex=/^[0-9]+$/;
+            if (!x.match(regex))
+            {
+                // $('#err-alert').show("slow");
+                // $(this).focus();
+                $( this ).val('');
+                return false;
+            }else{
+                // $('#err-alert').hide();
+            }
+        })
+    });
+
+
+})();
+

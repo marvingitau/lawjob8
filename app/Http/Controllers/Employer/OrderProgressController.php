@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Employer;
 
-use App\Http\Controllers\Controller;
+use App\Models\OrderProgress\Employer;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class EmployerDashboardController extends Controller
+class OrderProgressController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,7 @@ class EmployerDashboardController extends Controller
      */
     public function index()
     {
-        return view('Backend.employer.index');
+        //
     }
 
     /**
@@ -41,10 +42,10 @@ class EmployerDashboardController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\OrderProgress  $orderProgress
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(OrderProgress $orderProgress)
     {
         //
     }
@@ -52,10 +53,10 @@ class EmployerDashboardController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\OrderProgress  $orderProgress
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(OrderProgress $orderProgress)
     {
         //
     }
@@ -64,10 +65,10 @@ class EmployerDashboardController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\OrderProgress  $orderProgress
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, OrderProgress $orderProgress)
     {
         //
     }
@@ -75,10 +76,10 @@ class EmployerDashboardController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\OrderProgress  $orderProgress
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(OrderProgress $orderProgress)
     {
         //
     }

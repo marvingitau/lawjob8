@@ -1,7 +1,13 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserDataController;
+use App\Http\Controllers\Employer\CartController;
+use App\Http\Controllers\Employer\OrderController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Employer\ProfileController;
+use App\Http\Controllers\Employer\SettingsController;
 use App\Http\Controllers\Admin\JobAttributsController;
+use App\Http\Controllers\Employer\JobPostingsController;
 use App\Http\Controllers\Employer\EmployerDashboardController;
 
 /*
@@ -76,8 +82,30 @@ Route::group(['prefix'=>'employer'],function(){
 
     Route::group(['middleware'=>'role:employer'],function(){
         Route::get('/', [EmployerDashboardController::class,'index'])->name('employer.dashboard');
+        Route::post('/Cart/Add/{days}', [CartController::class,'store'])->name('add.cart');
+        Route::get('/Cart/View',[CartController::class,'index'])->name('view.cart');
+        Route::get('/Cart/Update-quantity/{id}/{value}',[CartController::class,'update'])->name('cart.update');
+        Route::get('/Cart/Delete/{id}',[CartController::class,'destroy'])->name('cart.delete');
+        Route::get('/Order/Forms', [OrderController::class,'index'])->name('order.forms');
+        Route::post('/Order/Checkout', [OrderController::class,'create'])->name('checkout.cart');
+        Route::get('/Order/Approved', [OrderController::class,'approved'])->name('checkout.approved');
+        // profiles
+        Route::get('/Profile/View', [ProfileController::class,'index'])->name('profile.view');
+        Route::post('/Profile/Store', [ProfileController::class,'store'])->name('profile.store');
+        Route::post('/HR/Store', [UserDataController::class,'store'])->name('hr.store');
+        Route::get('/Job/Create', [JobPostingsController::class,'create'])->name('job.create');
+        Route::post('/Job/Post', [JobPostingsController::class,'store'])->name('job.post');
+        Route::get('/Job/List', [JobPostingsController::class,'index'])->name('job.list');
+        Route::get('/Settings', [SettingsController::class,'index'])->name('settings');
 
 
+    });
+
+    Route::group(['prefix' => '/payment'], function () {
+        //PESAPAL
+        Route::get('/', [App\Http\Controllers\Employer\PaymentController::class,'payment']);
+        Route::get('donepayment',[App\Http\Controllers\Employer\PaymentController::class,'paymentsuccess'])->name('paymentsuccess');
+        Route::get('paymentconfirmation', [OrderController::class,'store'])->name('payment.confirmation');
     });
 
 });

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Model\Admin\JobAttributs;
 use Illuminate\Http\Request;
+use App\Models\Admin\JobAttributs;
 use App\Http\Controllers\Controller;
 // use Image;
 
@@ -35,7 +35,7 @@ class JobAttributsController extends Controller
         $attributes = $this->attribute->where('type',$type)->paginate(20);
         // $functionalArea = $this->attribute->where('type','functional_area')->get();
         $pt = $this->except[$type];
-        return view('Admin.jobAttribs.index',compact('attributes','type','pt'));
+        return view('Backend.Admin.jobAttribs.index',compact('attributes','type','pt'));
     }
 
     /**

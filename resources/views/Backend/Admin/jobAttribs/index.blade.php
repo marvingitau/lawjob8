@@ -1,4 +1,4 @@
-@extends('Admin.layouts.auth')
+@extends('Backend.Admin.layouts.auth')
 @section('title',$pt['label'])
 
 @section('content')
