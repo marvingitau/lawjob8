@@ -8,3 +8,9 @@
 {{-- rem chart & dashboard chart from here --}}
 <script src="{{asset('backend/assets/js/script.js')}}"></script>
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+<!-- Page level plugins -->
+<script src="{{asset('backend/assets/vendor/datatables/datatables.min.js')}}"></script>
+
+<!-- Page level custom scripts -->
+<script src="{{asset('backend/assets/js/demo/datatables-demo.js')}}"></script>

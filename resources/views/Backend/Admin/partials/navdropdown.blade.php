@@ -7,13 +7,13 @@
                     <a href="" class="nav-item nav-link dropdown-toggle text-secondary" data-toggle="dropdown"><i class="fas fa-link"></i> <span>Quick Access</span> <i style="font-size: .8em;" class="fas fa-caret-down"></i></a>
                     <div class="dropdown-menu dropdown-menu-right nav-link-menu">
                         <ul class="nav-list">
-                            <li><a href="" class="dropdown-item"><i class="fas fa-list"></i> Access Logs</a></li>
+                            <li><a href="{{ route('show.tokens')}}" class="dropdown-item"><i class="fas fa-list"></i> Access Tokens</a></li>
                             <div class="dropdown-divider"></div>
-                            <li><a href="" class="dropdown-item"><i class="fas fa-database"></i> Back ups</a></li>
+                            {{-- <li><a href="" class="dropdown-item"><i class="fas fa-database"></i> Back ups</a></li>
                             <div class="dropdown-divider"></div>
                             <li><a href="" class="dropdown-item"><i class="fas fa-cloud-download-alt"></i> Updates</a></li>
                             <div class="dropdown-divider"></div>
-                            <li><a href="" class="dropdown-item"><i class="fas fa-user-shield"></i> Roles</a></li>
+                            <li><a href="" class="dropdown-item"><i class="fas fa-user-shield"></i> Roles</a></li> --}}
                         </ul>
                     </div>
                 </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\UserData;
 use Illuminate\Http\Request;
 
@@ -50,7 +51,7 @@ class UserDataController extends Controller
             if ($user !== null) {
                 $user->update($data);
             } else {
-                $user = User::create($data+[ 'user_id' => auth()->user()->id]);
+                $user = UserData::create($data+[ 'user_id' => auth()->user()->id]);
             }
         // session()->put('success','');
         return back()->with('message','HR created.');

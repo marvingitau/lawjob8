@@ -31,6 +31,25 @@
                 ordering: true
             }
         );
+        $('#empList').DataTable(
+            {
+                responsive: true,
+                pageLength: 10,
+                lengthChange: false,
+                searching: true,
+                ordering: true
+            }
+        );
+        $('#tokenList').DataTable(
+            {
+                responsive: true,
+                pageLength: 10,
+                lengthChange: false,
+                searching: true,
+                ordering: true
+            }
+        );
+
         $('#phone').change(function(){
             var x=$( this ).val();
             // alert(x);

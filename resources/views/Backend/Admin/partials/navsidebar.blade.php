@@ -10,16 +10,16 @@
             <a href="#eployers" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle no-caret-down"><i class="fas fa-user-secret"></i> Employers</a>
             <ul class="collapse list-unstyled" id="eployers">
                 <li>
-                    <a href=""><i class="fas fa-list"></i> View List</a>
+                    <a href="{{ route('view.employers')}}"><i class="fas fa-list"></i> View List</a>
                 </li>
                 <li>
-                    <a href=""><i class="fas fa-user-plus"></i> Create New</a>
+                    <a href="{{ route('show.tokens')}}"><i class="fas fa-user-plus"></i> Tokens</a>
                 </li>
 
             </ul>
         </li>
 
-        <li>
+        {{-- <li>
             <a href="#candidatw" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle no-caret-down"><i class="fas fa-user-circle"></i> Candidates</a>
             <ul class="collapse list-unstyled" id="candidatw">
                 <li>
@@ -31,7 +31,7 @@
 
                 </li>
             </ul>
-        </li>
+        </li> --}}
 
          <li>
             <a href="#jobattributes" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle no-caret-down"><i class="fas fa-th-large"></i> Job Attributes</a>

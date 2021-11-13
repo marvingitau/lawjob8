@@ -6,7 +6,7 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Admin') }}</title>
+        <title>{{ config('app.name', 'Admin') }}- @yield('title')</title>
 
 
 
@@ -22,6 +22,7 @@
         <link href="{{ asset('backend/assets/vendor/chartsjs/Chart.min.css')}}" rel="stylesheet">
         <link href="{{ asset('backend/assets/vendor/flagiconcss/css/flag-icon.min.css')}}" rel="stylesheet">
         <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+        <link href="{{ asset('backend/assets/vendor/datatables/datatables.min.css')}}" rel="stylesheet">
 
         <!-- Styles -->
         {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}

@@ -24,6 +24,7 @@ class JobAttributs extends Model
         $data->put('education_qualification',['label'=>'Education Level','icon'=>'<i class="fas fa-graduation-cap"></i>']);
         $data->put('country',['label'=>'Country','icon'=>'<i class="fas fa-flag-checkered"></i>']);
         $data->put('city',['label'=>'City','icon'=>'<i class="fas fa-city"></i>']);
+        $data->put('package',['label'=>'Package','icon'=>'<i class="fas fa-box"></i>']);
 
         return $data;
     }

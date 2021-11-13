@@ -1,7 +1,9 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserDataController;
+use App\Http\Controllers\Admin\TokensController;
 use App\Http\Controllers\Employer\CartController;
+use App\Http\Controllers\Admin\EmployerController;
 use App\Http\Controllers\Employer\OrderController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Employer\ProfileController;
@@ -56,6 +58,17 @@ Route::group(['middleware'=>'role:admin','prefix'=>'admin'],function () {
         Route::post('/jobAttribute/store/{type}', [JobAttributsController::class,'store'])->name('admin.jobAttrib.store');
         Route::patch('/jobAttribute/update/{type}/{id}',[JobAttributsController::class,'update'])->name('admin.jobAttrib.update');
         Route::delete('/jobAttribute/delete/{type}/{id}', [JobAttributsController::class,'destroy'])->name('admin.jobAttrib.delete');
+        // Employer
+        Route::get('/employers',[EmployerController::class,'index'])->name('view.employers');
+        Route::get('/create/employer',[EmployerController::class,'create'])->name('create.employer');
+        Route::post('/store/employer',[EmployerController::class,'store'])->name('store.employer');
+        Route::post('/delete/employer/{id}/',[EmployerController::class,'destroy'])->name('delete.employer');
+        // Tokens
+        Route::get('/tokens',[TokensController::class,'index'])->name('show.tokens');
+        Route::post('/tokens/create',[TokensController::class,'store'])->name('create.token');
+        Route::get('/tokens/delete/{id}/',[TokensController::class,'destroy'])->name('delete.token');
+
+
     });
 });
 
