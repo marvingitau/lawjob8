@@ -450,6 +450,16 @@ NOTE: This file contains all scripts for the actual Template.
     POTENZA.Popover(),
 		POTENZA.rangesliders(),
 		POTENZA.carousel();
+
+        $('#jobList').DataTable(
+            {
+                responsive: true,
+                pageLength: 10,
+                lengthChange: false,
+                searching: true,
+                ordering: true
+            }
+        );
 	});
 })(jQuery);
 

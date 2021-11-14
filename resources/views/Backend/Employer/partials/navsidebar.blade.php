@@ -23,7 +23,7 @@
         <li>
             <a href="{{ route('order.forms') }}"><i class="fas fa-credit-card"></i> Create Credit</a>
         </li>
-        <li>
+        {{-- <li>
             <a href="#eployers" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle no-caret-down"><i class="fas fa-history"></i> Order History</a>
             <ul class="collapse list-unstyled" id="eployers">
                 <li>
@@ -34,6 +34,6 @@
                 </li>
 
             </ul>
-        </li>
+        </li> --}}
     </ul>
 </nav>

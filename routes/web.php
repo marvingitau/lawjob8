@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserDataController;
+use App\Http\Controllers\JobListingController;
 use App\Http\Controllers\Admin\TokensController;
 use App\Http\Controllers\Employer\CartController;
 use App\Http\Controllers\Admin\EmployerController;
@@ -26,6 +27,11 @@ use App\Http\Controllers\Employer\EmployerDashboardController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('joblist', [JobListingController::class, 'index'])->name('listing');
+Route::get('job/{id}/view', [JobListingController::class, 'show'])->name('jobSpecific');
+Route::post('search', [JobListingController::class, 'search'])->name('jobSearch');
+
+
 
 Route::get('login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
 Route::get('admin/login', [App\Http\Controllers\Auth\LoginController::class, 'AdminLoginForm'])->name('admin.login');

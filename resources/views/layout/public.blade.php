@@ -33,6 +33,7 @@
             @yield('content')
         {{-- </main> --}}
     </div>
+    @include('layout.footer')
     @include('Backend.layouts.wwwstatic.script')
 </body>
 </html>

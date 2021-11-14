@@ -22,10 +22,11 @@ class PaymentController extends Controller
         $orderSumCost = Order::where('session_id',Session::get('emp_session_id'))->sum('grand_total');
         $orderData = Order::where('session_id',Session::get('emp_session_id'))->first();
         // dd(Auth::guard()->id());
+        $RANDO = rand(100000000,999999999);
 
         $payments = new Payment;
         $payments -> businessid = Auth::guard()->id(); //Business ID
-        $payments -> transactionid = rand(100000000,999999999);
+        $payments -> transactionid = $RANDO;
         // Pesapal::random_reference();
         $payments -> trackingid = $orderData->trackingid;
         $payments -> payment_method = 'NA';
@@ -33,7 +34,7 @@ class PaymentController extends Controller
         $payments -> amount = 1;
         $payments -> save();
 
-        $orderData->transactionid;
+        $orderData->transactionid=$RANDO;
         $orderData-> save();
 
 
@@ -66,7 +67,7 @@ class PaymentController extends Controller
         /*
         / AT THIS POINT ADD THE ORDER TRACKING NO TO USE IT TO APPROVE THE ORDER DURING PAYMENT APPROVAL
         */
-        $latest_order=Order::where('trackingid',$trackingid)->first();
+        $latest_order=Order::where('transactionid',$ref)->first();
         $latest_order -> trackingid = $trackingid;
         $latest_order -> save();
 
@@ -80,8 +81,8 @@ class PaymentController extends Controller
 
         //go back home
         $payments=Payment::where('businessid',auth()->user()->id)->orderBy('created_at', 'desc')->first();
-        // return redirect('employer')->with('ok', 'You have successfully made payment, please wait while we update your payment records');
-        return view('Backend.Employer.Order.PaymentConfirmation', compact('payments'));
+        return redirect('employer')->with('ok', 'You have successfully made payment, please wait while we update your payment records');
+        // return view('Backend.Employer.Order.PaymentConfirmation', compact('payments'));
     }
     //This method just tells u that there is a change in pesapal for your transaction..
     //u need to now query status..retrieve the change...CANCELLED? CONFIRMED?

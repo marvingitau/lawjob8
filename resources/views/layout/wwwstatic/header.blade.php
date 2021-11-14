@@ -9,13 +9,17 @@
                     <span></span>
                 </button>
                 <a class="navbar-brand" href="{{ url("/")}}">
-                <img class="img-fluid" src="images/logo.svg" alt="logo">
+                <img class="img-fluid" src="images/log.png" alt="logo">
                 </a>
                 <div class="navbar-collapse collapse d-md-flex">
                     {{-- Left Side --}}
                     <ul class="nav navbar-nav me-auto">
                         <li class="nav-item dropdown active">
                         <a class="nav-link" href="{{ url("/")}}"  role="button"  aria-haspopup="true" aria-expanded="false">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url("/joblist")}}"  role="button"  aria-haspopup="true" aria-expanded="false">Job List</a>
                         </li>
 
                         {{-- <li class="nav-item dropdown">
@@ -36,11 +40,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Employer Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Employer Register') }}</a>
                                 </li>
                             @endif
                         @else

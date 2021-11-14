@@ -12,5 +12,7 @@ Javascript -->
 <script src="{{ asset('js/owl-carousel/owl-carousel.min.js') }}"></script>
 <script src="{{ asset('js/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
 
+<script src="{{asset('backend/assets/vendor/datatables/datatables.min.js')}}"></script>
+
 <!-- Template Scripts (Do not remove)-->
 <script src="{{ asset('js/custom.js') }}"></script>

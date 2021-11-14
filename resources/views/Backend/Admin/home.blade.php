@@ -1,5 +1,6 @@
 @extends('Backend.Admin.layouts.auth')
 
+@section('title','Dashboard')
 @section('content')
 
     <div class="container">
@@ -21,8 +22,8 @@
                             </div>
                             <div class="col-sm-8">
                                 <div class="detail">
-                                    <p class="detail-subtitle">New Orders</p>
-                                    <span class="number">6,267</span>
+                                    <p class="detail-subtitle">Orders</p>
+                                    <span class="number">{{ $orders }}</span>
                                 </div>
                             </div>
                         </div>
@@ -46,8 +47,8 @@
                             </div>
                             <div class="col-sm-8">
                                 <div class="detail">
-                                    <p class="detail-subtitle">Revenue</p>
-                                    <span class="number">$180,900</span>
+                                    <p class="detail-subtitle">Employer</p>
+                                    <span class="number">{{ $employers }}</span>
                                 </div>
                             </div>
                         </div>
@@ -60,7 +61,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
+            {{-- <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
                 <div class="card">
                     <div class="content">
                         <div class="row">
@@ -84,7 +85,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
                 <div class="card">
                     <div class="content">
@@ -96,8 +97,8 @@
                             </div>
                             <div class="col-sm-8">
                                 <div class="detail">
-                                    <p class="detail-subtitle">Support Request</p>
-                                    <span class="number">75</span>
+                                    <p class="detail-subtitle">Support</p>
+                                    <span class="number">24/7</span>
                                 </div>
                             </div>
                         </div>
@@ -111,7 +112,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-6">
@@ -322,7 +323,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 
 @endsection

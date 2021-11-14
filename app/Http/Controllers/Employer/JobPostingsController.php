@@ -38,6 +38,7 @@ class JobPostingsController extends Controller
         $jobAttribCountry = JobAttributs::getAttr('country');
         $jobAttribCity = JobAttributs::getAttr('city');
         $jobAttribSalary = JobAttributs::getAttr('monthly_salary');
+        // $jobAttribPackage = JobAttributs::getAttr('package');
 
         $creditList = Order::where('user_id',$usr->id)->where('quantity','>',0)->get();
         // dd($creditList);
@@ -53,6 +54,7 @@ class JobPostingsController extends Controller
      */
     public function store(Request $request)
     {
+
         $req = $request->validate([
             'job_type'=>'required',
             'title'=>'required',
@@ -64,11 +66,14 @@ class JobPostingsController extends Controller
             'monthly_salary'=>'',
         ]);
 
+        // dd($req);
         $order_id  = $req['credit'];
 
-        $ord = Order::findOrFail($order_id);
+        $ord = Order::where('package',$order_id)->first();
+        // $ord = Order::findOrFail($order_id);
         $decrease = $ord->increment('quantity','-1');
 
+        // dd($decrease);
         if($decrease){
             $res = JobPostings::create($req+['expiry_date'=>$ord->expiry_date,'user_id'=>auth()->user()->id]);
             if($res->wasRecentlyCreated)
@@ -76,18 +81,21 @@ class JobPostingsController extends Controller
                 // session()->put('success','Job Posting SUCCESS.');
                 // return back();
                 return back()->with('success','Job Posting Succes');
+                // return redirect('employer');
 
             }else{
                 Order::findOrFail($order_id)->increment('quantity','1');
                 $res->delete();
                 // session()->put('danger','Job Posting FAILED.');
-                // return back();
+                return back();
+                // return redirect('employer');
             }
 
         }else{
             Order::findOrFail($order_id)->increment('quantity','1');
             // session()->put('danger','Failed to Decreament.');
             return back()->with('danger','Failed to Decreament.');
+            // return redirect('employer');
 
         }
 

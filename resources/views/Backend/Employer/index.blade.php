@@ -17,20 +17,20 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="icon-big text-center">
-                                <i class="teal fas fa-shopping-cart"></i>
+                                <i class="teal  fas fa-home"></i>
                             </div>
                         </div>
                         <div class="col-sm-8">
                             <div class="detail">
-                                <p class="detail-subtitle">New Orders</p>
-                                <span class="number">6,267</span>
+                                <p class="detail-subtitle">Go Home</p>
+                                <span class="number">Home Page</span>
                             </div>
                         </div>
                     </div>
                     <div class="footer">
                         <hr />
                         <div class="stats">
-                            <i class="fas fa-calendar"></i> For this Week
+                            <i class="fas fa-calendar"></i> For this Site
                         </div>
                     </div>
                 </div>
@@ -47,8 +47,8 @@
                         </div>
                         <div class="col-sm-8">
                             <div class="detail">
-                                <p class="detail-subtitle">Revenue</p>
-                                <span class="number">$180,900</span>
+                                <p class="detail-subtitle">Posted Job</p>
+                                <span class="number">{{ $jCount }} </span>
                             </div>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
+        {{-- <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
             <div class="card">
                 <div class="content">
                     <div class="row">
@@ -85,7 +85,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
             <div class="card">
                 <div class="content">
@@ -97,8 +97,8 @@
                         </div>
                         <div class="col-sm-8">
                             <div class="detail">
-                                <p class="detail-subtitle">Support Request</p>
-                                <span class="number">75</span>
+                                <p class="detail-subtitle">Support</p>
+                                <span class="number">24 Hrs</span>
                             </div>
                         </div>
                     </div>

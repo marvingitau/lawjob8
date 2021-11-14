@@ -4,6 +4,7 @@ use Carbon\Carbon;
 use PaymentController;
 use App\Traits\Payments;
 use Darryldecode\Cart\Cart;
+use App\Models\Admin\Tokens;
 use Illuminate\Http\Request;
 use App\Models\Employer\Order;
 use App\Http\Controllers\Controller;
@@ -21,7 +22,8 @@ class OrderController extends Controller{
      */
     public function index()
     {
-        return view('Backend.Employer.Order.index');
+        $tokens = Tokens::all();
+        return view('Backend.Employer.Order.index',compact('tokens'));
     }
 
     /**

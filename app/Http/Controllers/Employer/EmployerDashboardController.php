@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Employer;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Employer\JobPostings;
 
 class EmployerDashboardController extends Controller
 {
@@ -14,7 +15,8 @@ class EmployerDashboardController extends Controller
      */
     public function index()
     {
-        return view('Backend.employer.index');
+        $jCount=JobPostings::where('user_id',auth()->user()->id)->count();
+        return view('Backend.employer.index',compact('jCount'));
     }
 
     /**

@@ -69,7 +69,7 @@
                 <select class="form-control rounded-0" name="credit" id="country">
                     @if($creditList)
                     @foreach ($creditList as $credit)
-                         <option value="{{ $credit['id'] }}"> {{ $credit['package'] }} ({{ $credit['quantity'] }})</option>
+                         <option value="{{\App\Models\Admin\JobAttributs::where('id',$credit['package'])->first()->id}}"> {{ \App\Models\Admin\JobAttributs::where('id',$credit['package'])->first()->name }} ({{ $credit['quantity'] }})</option>
                     @endforeach
 
                     @endif

@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
-use App\Models\Employer\Order;
-use App\Http\Controllers\Controller;
+use App\Models\Employer\JobPostings;
 
-class DashboardController extends Controller
+class JobListingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +14,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $employers= User::where('role','employer')->count();
-        $orders = Order::all()->count();
-        return view('Backend.Admin.home',compact('employers','orders'));
+        $jPosting = JobPostings::all();
+        return view('job-listing',compact('jPosting'));
     }
 
     /**
@@ -50,7 +47,18 @@ class DashboardController extends Controller
      */
     public function show($id)
     {
-        //
+        $singleJob =  JobPostings::findOrFail($id);
+        return view('job-details',compact('singleJob'));
+    }
+
+    public function search(Request $request)
+    {
+
+        $jPosting1=JobPostings::query()
+        ->where('title', 'LIKE', "%{$request->input('job_title')}%")
+        ->Where('city', 'LIKE', "%{$request->input('city')}%")
+        ->get();
+        return view('searchResult',compact('jPosting1'));
     }
 
     /**
