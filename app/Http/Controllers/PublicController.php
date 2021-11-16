@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Employer;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\Employer\JobPostings;
+use App\Models\Admin\JobAttributs;
 
-class EmployerDashboardController extends Controller
+class PublicController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,19 @@ class EmployerDashboardController extends Controller
      */
     public function index()
     {
-        $jCount=JobPostings::where('user_id',auth()->user()->id)->count();
-        return view('Backend.Employer.index',compact('jCount'));
+        $jobCat= JobAttributs::getAttr('job_category');
+        // dd($jobCat);
+        return view('welcome',compact('jobCat'));
+    }
+
+    public function contact()
+    {
+        return view('contact');
+    }
+
+    public function about()
+    {
+        return view('about');
     }
 
     /**

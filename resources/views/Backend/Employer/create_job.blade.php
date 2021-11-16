@@ -85,6 +85,38 @@
                 </div>
             </div>
 
+            <div class="col-md-6">
+                <div class="form-group">
+                <label for="">Choose Job Category</label>
+                <select class="form-control rounded-0" name="job_category" id="country">
+                    @if($jobCategory)
+                    @foreach ($jobCategory as $cat)
+                        <option value="{{ $cat['id'] }}"> {{ $cat['name'] }}
+                        </option>
+                    @endforeach
+
+                    @endif
+                </select>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                <label for="">Choose Icon</label>
+                <select class="form-control rounded-0" name="icon" id="country">
+
+                         <option value="conversation">conversation</option>
+                         <option value="money">money</option>
+                         <option value="mortarboard">mortarboard</option>
+                         <option value="worker">worker</option>
+                         <option value="businessman">businessman</option>
+                         <option value="coding">coding</option>
+                         <option value="balance">balance</option>
+
+                </select>
+                </div>
+            </div>
+
             <div class="col-md-12">
                 <h4>Job Summary</h4>
                 <textarea name="job_summary" id="job_summary" rows="10" cols="80"></textarea>

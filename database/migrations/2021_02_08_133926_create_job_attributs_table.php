@@ -23,7 +23,8 @@ class CreateJobAttributsTable extends Migration
                 'country',
                 'education_qualification',
                 'city',
-                'package'
+                'package',
+                'job_category'
 
             ]);
             $table->string('name');

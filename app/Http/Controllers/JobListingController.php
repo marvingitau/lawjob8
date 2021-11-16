@@ -61,6 +61,16 @@ class JobListingController extends Controller
         return view('searchResult',compact('jPosting1'));
     }
 
+    public function searchCat(Request $request,$id)
+    {
+
+        $jPosting1=JobPostings::query()
+        ->where('job_category', 'LIKE', "%{$id}%")
+        // ->Where('city', 'LIKE', "%{$request->input('city')}%")
+        ->get();
+        return view('searchResult',compact('jPosting1'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

@@ -25,6 +25,8 @@ class JobAttributs extends Model
         $data->put('country',['label'=>'Country','icon'=>'<i class="fas fa-flag-checkered"></i>']);
         $data->put('city',['label'=>'City','icon'=>'<i class="fas fa-city"></i>']);
         $data->put('package',['label'=>'Package','icon'=>'<i class="fas fa-box"></i>']);
+        $data->put('job_category',['label'=>'Job Category','icon'=>'<i class="fas fa-object-ungroup"></i>']);
+
 
         return $data;
     }

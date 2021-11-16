@@ -38,12 +38,14 @@ class JobPostingsController extends Controller
         $jobAttribCountry = JobAttributs::getAttr('country');
         $jobAttribCity = JobAttributs::getAttr('city');
         $jobAttribSalary = JobAttributs::getAttr('monthly_salary');
+        $jobCategory = JobAttributs::getAttr('job_category');
         // $jobAttribPackage = JobAttributs::getAttr('package');
+        // dd($jobCategory);
 
         $creditList = Order::where('user_id',$usr->id)->where('quantity','>',0)->get();
         // dd($creditList);
 
-        return view('Backend.Employer.create_job',compact(['jobAttrib','jobAttribCountry','jobAttribCity','creditList','jobAttribSalary']));
+        return view('Backend.Employer.create_job',compact(['jobAttrib','jobAttribCountry','jobAttribCity','creditList','jobAttribSalary','jobCategory']));
     }
 
     /**
@@ -64,16 +66,16 @@ class JobPostingsController extends Controller
             'job_description'=>'required',
             'credit'=>'required',
             'monthly_salary'=>'',
+            'job_category'=>'required',
+            'icon'=>''
         ]);
 
-        // dd($req);
         $order_id  = $req['credit'];
 
         $ord = Order::where('package',$order_id)->first();
         // $ord = Order::findOrFail($order_id);
-        $decrease = $ord->increment('quantity','-1');
+        $decrease = $ord->increment('quantity','1');
 
-        // dd($decrease);
         if($decrease){
             $res = JobPostings::create($req+['expiry_date'=>$ord->expiry_date,'user_id'=>auth()->user()->id]);
             if($res->wasRecentlyCreated)

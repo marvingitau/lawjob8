@@ -1,7 +1,7 @@
     <!-- ================================= Header
     -->
-    <header class="header header-transparent">
-        <nav class="navbar navbar-static-top navbar-expand-lg navbar-light header-sticky">
+    <header class="header bg-dark">
+        <nav class="navbar navbar-static-top navbar-expand-lg header-sticky">
             <div class="container-fluid">
                 <button id="nav-icon4" type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
                     <span></span>
@@ -9,7 +9,7 @@
                     <span></span>
                 </button>
                 <a class="navbar-brand" href="{{ url("/")}}">
-                <img class="img-fluid" src="images/log.png" alt="logo">
+                <img class="img-fluid" src="{{asset('images/log.png')}}" alt="logo">
                 </a>
                 <div class="navbar-collapse collapse d-md-flex">
                     {{-- Left Side --}}

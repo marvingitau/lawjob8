@@ -20,6 +20,8 @@ class CreateJobPostingsTable extends Migration
             $table->string('title');
             $table->unsignedInteger('country');
             $table->unsignedInteger('city');
+            $table->unsignedInteger('job_category');
+            $table->string('icon')->default('account');
             $table->float('monthly_salary')->nullable();
             $table->text('job_summary')->nullable();
             $table->text('job_description')->nullable();

@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PublicController;
 use App\Http\Controllers\UserDataController;
 use App\Http\Controllers\JobListingController;
 use App\Http\Controllers\Admin\TokensController;
@@ -24,13 +25,16 @@ use App\Http\Controllers\Employer\EmployerDashboardController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', [PublicController::class, 'index'])->name('welcome');
+Route::get('/contacts', [PublicController::class, 'contact'])->name('contact');
+Route::get('/about', [PublicController::class, 'about'])->name('about');
+
+
 Route::get('joblist', [JobListingController::class, 'index'])->name('listing');
 Route::get('job/{id}/view', [JobListingController::class, 'show'])->name('jobSpecific');
 Route::post('search', [JobListingController::class, 'search'])->name('jobSearch');
-
+Route::get('searchByCat/{id}', [JobListingController::class, 'searchCat'])->name('jobSearchCat');
 
 
 Route::get('login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');

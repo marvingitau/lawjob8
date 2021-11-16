@@ -3,7 +3,7 @@
 
 <!--=================================
 banner -->
-<section class="header-inner header-inner-big bg-holder text-white" style="background-image: url(images/bg/law.jpg);">
+<section class="header-inner header-inner-big bg-holder text-white" style="background-image: url({{asset('images/bg/law.jpg')}});">
     <div class="container">
       <div class="row">
         <div class="col-12">

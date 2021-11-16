@@ -3,19 +3,16 @@ Footer-->
 <footer class="footer mt-0">
     <div class="container pb-4 pb-lg-5">
       <div class="row">
-        {{-- <div class="col-lg-3 col-md-6">
+        <div class="col-lg-3 col-md-6">
           <div class="footer-link">
-            <h5 class="text-dark mb-4">For Candidates</h5>
+            <h5 class="text-dark mb-4">Page Link</h5>
             <ul class="list-unstyled">
-              <li><a href="#">Browse Jobs</a></li>
-              <li><a href="#">Browse Categories</a></li>
-              <li><a href="#">Submit Resume</a></li>
-              <li><a href="#">Candidate Dashboard</a></li>
-              <li><a href="#">Job Alerts</a></li>
-              <li><a href="#">My Bookmarks</a></li>
+                <li><a href="{{ url('about')}}">About Us</a></li>
+              <li><a href="{{ url('contacts')}}">Contact Us</a></li>
+
             </ul>
           </div>
-        </div> --}}
+        </div>
         {{-- <div class="col-lg-3 col-md-6 mt-4 mt-md-0">
           <div class="footer-link">
             <h5 class="text-dark mb-4">For Employers</h5>

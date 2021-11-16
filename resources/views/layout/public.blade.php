@@ -27,7 +27,11 @@
 </head>
 <body>
     <div id="app">
-        @include('layout.wwwstatic.header')
+        @if (Request::path() == '/')
+            @include('layout.wwwstatic.header')
+        @else
+            @include('layout.wwwstatic.header1')
+        @endif
 
         {{-- <main class="py-4"> --}}
             @yield('content')
