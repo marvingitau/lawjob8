@@ -1,0 +1,494 @@
+.d-flex {
+    -ms-flex-wrap: unset;
+    flex-wrap: unset;
+}
+
+.alert.alert-info.d-flex .l {
+    width: 80%;
+}
+
+.alert.alert-info.d-flex .i {
+    width:20%;
+}
+
+.cat-app-row {
+    margin: 16px 0px;
+    padding: 16px 0px;
+}
+
+.steps.clearfix ul {
+    display: flex;
+    background: #24324a;
+}
+
+.steps.clearfix ul li {
+    flex-grow: 1;
+    padding: 10px;
+    color:#fff;
+    text-align:center;
+}
+
+.steps.steps.clearfix ul li span{
+    color:#fff;
+}
+
+.current-info.audible {
+    color: white;
+}
+
+.wizard > .steps > ul > li, .wizard > .actions > ul > li {
+    float: left;
+}
+
+.wizard > .actions > ul {
+    display: inline-block;
+    text-align: right;
+}
+
+.wizard > .actions > ul > li {
+    margin: 0 .5em;
+}
+
+.wizard li.current {
+    background: #ed8936;
+    /* background: #e33237; */
+    color: white;
+}
+
+.wizard > .actions .disabled a, .wizard > .actions .disabled a:hover, .wizard > .actions .disabled a:active {
+    color: #aaa;
+    background: #ddd8d8;
+}
+
+
+.wizard > .actions {
+    position: relative;
+    display: block;
+    text-align: right;
+    width: 100%;
+}
+
+.title {
+    display: none;
+}
+
+.current-info.audible {
+    color: white;
+    text-transform: capitalize;
+    font-size: 80%;
+}
+
+.title.current {
+    display: block;
+    margin-left: 16px;
+}
+
+.steps.clearfix {
+    margin: 0px 0px 6px;
+}
+
+li.current span {
+    color: white;
+}
+
+.cat-app-row .form-control required, .cat-app-row select, .cat-app-row textarea {
+    border-radius:0px;
+    border:0px;
+    background:#80808047;
+}
+
+.cat-app-row label {
+    font-weight: 500;
+    margin: 0px;
+}
+
+.wizard > .actions a[href="#finish"] {
+    display: none;
+}
+
+/*
+Common
+*/
+
+.wizard,
+.tabcontrol
+{
+display: block;
+width: 100%;
+overflow: hidden;
+}
+
+.wizard a,
+.tabcontrol a
+{
+outline: 0;
+}
+
+.wizard ul,
+.tabcontrol ul
+{
+list-style: none !important;
+padding: 0;
+margin: 0;
+}
+
+.wizard ul > li,
+.tabcontrol ul > li
+{
+display: block;
+padding: 0;
+}
+
+/* Accessibility */
+.wizard > .steps .current-info,
+.tabcontrol > .steps .current-info
+{
+position: absolute;
+left: -999em;
+}
+
+.wizard > .content > .title,
+.tabcontrol > .content > .title
+{
+position: absolute;
+left: -999em;
+}
+
+
+
+/*
+Wizard
+*/
+
+.wizard > .steps
+{
+position: relative;
+display: block;
+width: 100%;
+}
+
+.wizard.vertical > .steps
+{
+display: inline;
+float: left;
+width: 30%;
+}
+
+.wizard > .steps .number
+{
+font-size: 1.429em;
+}
+
+.wizard > .steps > ul > li
+{
+width: 25%;
+}
+
+.wizard > .steps > ul > li,
+.wizard > .actions > ul > li
+{
+float: left;
+}
+
+.wizard.vertical > .steps > ul > li
+{
+float: none;
+width: 100%;
+}
+
+.wizard > .steps .disabled a,
+.wizard > .steps .disabled a:hover,
+.wizard > .steps .disabled a:active
+{
+color: #aaa;
+cursor: default;
+}
+
+.wizard > .steps .error,
+/* .wizard > .steps .error a, */
+.wizard > .steps .error a:hover,
+.wizard > .steps .error a:active
+{
+background: #ff3111;
+color: #fff;
+
+}
+
+.wizard > .content
+{
+/* background: #eee; */
+display: block;
+margin: 0.5em;
+min-height: 35em;
+overflow: hidden;
+position: relative;
+width: auto;
+
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+}
+
+.wizard.vertical > .content
+{
+display: inline;
+float: left;
+margin: 0 2.5% 0.5em 2.5%;
+width: 65%;
+}
+
+.wizard > .content > .body
+{
+/*float: left;*/
+/*position: absolute;*/
+/*width: 95%;*/
+/*height: 95%;*/
+padding: 2%;
+}
+
+.wizard > .content > .body ul
+{
+list-style: disc !important;
+}
+
+.wizard > .content > .body ul > li
+{
+display: list-item;
+}
+
+.wizard > .content > .body > iframe
+{
+border: 0 none;
+width: 100%;
+height: 100%;
+}
+
+.wizard > .content > .body input {
+display: block;
+border: 1px solid #ccc;
+border-radius: 0px;
+}
+
+.wizard > .content > .body input[type="checkbox"]
+{
+display: inline-block;
+}
+
+.wizard > .content > .body input.error
+{
+background: rgb(251, 227, 228);
+border: 1px solid #fbc2c4;
+color: #8a1f11;
+}
+
+.wizard > .content > .body label
+{
+display: flex;
+margin-bottom: 0.5em;
+}
+
+.wizard > .content > .body label.error
+{
+color: #8a1f11;
+display: inline-block;
+margin-left: 1.5em;
+}
+
+.wizard > .actions
+{
+position: relative;
+display: block;
+text-align: right;
+width: 100%;
+}
+
+.wizard.vertical > .actions
+{
+display: inline;
+float: right;
+margin: 0 2.5%;
+width: 95%;
+}
+
+.wizard > .actions > ul
+{
+display: inline-block;
+text-align: right;
+}
+
+.wizard > .actions > ul > li
+{
+margin: 0 0.5em;
+}
+
+.wizard.vertical > .actions > ul > li
+{
+margin: 0 0 0 1em;
+}
+
+
+.wizard > .actions .disabled a,
+.wizard > .actions .disabled a:hover,
+.wizard > .actions .disabled a:active
+{
+color: #aaa;
+}
+
+/*
+Tabcontrol
+*/
+
+.tabcontrol > .steps
+{
+position: relative;
+display: block;
+width: 100%;
+}
+
+.tabcontrol > .steps > ul
+{
+position: relative;
+margin: 6px 0 0 0;
+top: 1px;
+z-index: 1;
+}
+
+.tabcontrol > .steps > ul > li
+{
+float: left;
+margin: 5px 2px 0 0;
+padding: 1px;
+
+-webkit-border-top-left-radius: 5px;
+-webkit-border-top-right-radius: 5px;
+-moz-border-radius-topleft: 5px;
+-moz-border-radius-topright: 5px;
+border-top-left-radius: 5px;
+border-top-right-radius: 5px;
+}
+
+.tabcontrol > .steps > ul > li:hover
+{
+background: #edecec;
+border: 1px solid #bbb;
+padding: 0;
+}
+
+.tabcontrol > .steps > ul > li.current
+{
+background: #fff;
+border: 1px solid #bbb;
+border-bottom: 0 none;
+padding: 0 0 1px 0;
+margin-top: 0;
+}
+
+.tabcontrol > .steps > ul > li > a
+{
+color: #5f5f5f;
+display: inline-block;
+border: 0 none;
+margin: 0;
+padding: 10px 30px;
+text-decoration: none;
+}
+
+.tabcontrol > .steps > ul > li > a:hover
+{
+text-decoration: none;
+}
+
+.tabcontrol > .steps > ul > li.current > a
+{
+padding: 15px 30px 10px 30px;
+}
+
+.tabcontrol > .content
+{
+position: relative;
+display: inline-block;
+width: 100%;
+height: 35em;
+overflow: hidden;
+border-top: 1px solid #bbb;
+padding-top: 20px;
+}
+
+.tabcontrol > .content > .body
+{
+float: left;
+position: absolute;
+width: 95%;
+height: 95%;
+padding: 2.5%;
+}
+
+.tabcontrol > .content > .body ul
+{
+list-style: disc !important;
+}
+
+.tabcontrol > .content > .body ul > li
+{
+display: list-item;
+}
+
+.wizard > .actions li a {
+padding: 10px 20px;
+background: #ddd8d8;
+}
+
+.wizard > .actions a[href="#next"] {
+background: #ed8936;
+color: #fff;
+}
+
+.countryCode{
+width:80px;
+}
+
+/* Mobile responsive */
+
+/* mobile phone */
+@media only screen and (max-width: 576px) {
+    .steps.clearfix ul li {
+        flex-grow: 1;
+        padding: 10px;
+        color: #fff;
+        text-align: left;
+    }
+    .wizard > .steps > ul > li {
+        width: 100%;
+    }
+    .steps.clearfix ul {
+        display: flex;
+        background: #24324a;
+        flex-direction: column;
+    }
+}
+/* Tablets */
+@media only screen and (min-width: 577px) and (max-width: 767px) {
+    .wizard > .steps > ul > li {
+        width: 50%;
+    }
+    .steps.clearfix ul {
+        display: inline-block;
+        background: #24324a;
+    }
+}
+/* medium screen pc */
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+}
+/* large pc */
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+
+}
+
+/* Extra large */
+
+@media only screen and  (max-width: 1200px) {
+
+}

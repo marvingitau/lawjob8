@@ -469,3 +469,9 @@ table.dataTable > tbody > tr.child ul.dtr-details {
 	border-radius: 50%;
 	color: white;
 }
+
+/* Sidebar --make active different color-- @mg  */
+a[aria-expanded~=true]{
+ background-color: #ed8936;
+ color:white;
+}

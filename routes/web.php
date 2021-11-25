@@ -9,8 +9,10 @@ use App\Http\Controllers\Admin\EmployerController;
 use App\Http\Controllers\Employer\OrderController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Employer\ProfileController;
+use App\Http\Controllers\Candidate\AboutMeController;
 use App\Http\Controllers\Employer\SettingsController;
 use App\Http\Controllers\Admin\JobAttributsController;
+use App\Http\Controllers\Employer\AppliedJobsController;
 use App\Http\Controllers\Employer\JobPostingsController;
 use App\Http\Controllers\Employer\EmployerDashboardController;
 
@@ -87,8 +89,10 @@ Route::group(['prefix'=>'candidate'],function(){
 
     Route::group(['middleware'=>'role:candidate'],function(){
         Route::get('/', [App\Http\Controllers\Candidate\CandidateDashboardController::class,'index'])->name('candidate.dashboard');
-
-        // Route::post('/about-me/create', 'AboutMeController@store')->name('aboutme.create');
+        Route::get('/Profile/View', [AboutMeController::class,'index'])->name('candidate.profile');
+        Route::get('/Profile/Create', [AboutMeController::class,'create'])->name('candidate.profile.create');
+        Route::post('/Profile/Store', [AboutMeController::class,'store'])->name('candidate.profile.store');
+        // Route::post('/about-me/create', [AboutMeController::class,'store'])->name('profile.create');
         // Route::post('/experience/create', 'WorkExperienceController@store')->name('experience.create');
         // Route::post('/education/create', 'EducationController@store')->name('education.create');
         // Route::post('/skill/create', 'JobSkillController@store')->name('skill.create');
@@ -112,7 +116,6 @@ Route::group(['prefix'=>'employer'],function(){
         Route::get('/Order/Forms', [OrderController::class,'index'])->name('order.forms');
         Route::post('/Order/Checkout', [OrderController::class,'create'])->name('checkout.cart');
         Route::get('/Order/Approved', [OrderController::class,'approved'])->name('checkout.approved');
-        // profiles
         Route::get('/Profile/View', [ProfileController::class,'index'])->name('profile.view');
         Route::post('/Profile/Store', [ProfileController::class,'store'])->name('profile.store');
         Route::post('/HR/Store', [UserDataController::class,'store'])->name('hr.store');
@@ -120,6 +123,8 @@ Route::group(['prefix'=>'employer'],function(){
         Route::post('/Job/Post', [JobPostingsController::class,'store'])->name('job.post');
         Route::get('/Job/List', [JobPostingsController::class,'index'])->name('job.list');
         Route::get('/Settings', [SettingsController::class,'index'])->name('settings');
+        Route::get('/Applications', [AppliedJobsController::class,'index'])->name('job.application');
+
 
 
     });

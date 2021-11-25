@@ -16,7 +16,11 @@ class CreateAboutMesTable extends Migration
         Schema::create('about_mes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->text('description');
+            $table->string('fname')->nullable();
+            $table->string('lname')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('dob')->nullable();
             $table->timestamps();
         });
     }

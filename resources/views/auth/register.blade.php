@@ -64,15 +64,15 @@
                         <div class="form-group row my-md-3">
                             <div class="col-md-4"></div>
                             <div class="col-md-6">
-                                {{-- <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="role" id="Candid" value="candidate" checked required>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="role" id="Candid" value="candidate" required>
                                     <label class="form-check-label" for="Candid">
                                       Candidate
                                     </label>
-                                </div> --}}
+                                </div>
 
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="role" id="Employ" value="employer" checked required>
+                                    <input class="form-check-input" type="radio" name="role" id="Employ" value="employer">
                                     <label class="form-check-label" for="Employ">
                                       Employer
                                     </label>

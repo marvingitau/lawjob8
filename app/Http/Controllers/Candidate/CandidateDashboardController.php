@@ -14,7 +14,7 @@ class CandidateDashboardController extends Controller
      */
         public function index()
     {
-        dd('candidate home');
+        return view('Backend.Candidate.index');
     }
 
     /**

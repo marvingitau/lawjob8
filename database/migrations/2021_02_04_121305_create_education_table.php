@@ -23,7 +23,7 @@ class CreateEducationTable extends Migration
             $table->unsignedInteger('end_month')->nullable();
             $table->unsignedInteger('end_year')->nullable();
             $table->boolean('is_current')->default(0);
-            $table->text('description')->nullable();
+            $table->sting('coursetitle')->nullable();
             $table->timestamps();
         });
     }

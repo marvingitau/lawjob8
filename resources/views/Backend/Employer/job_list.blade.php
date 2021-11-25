@@ -14,7 +14,7 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Position</th>
+                <th>Type</th>
                 <th>City</th>
                 <th>Expiry date</th>
                 <th>Salary</th>
@@ -23,7 +23,7 @@
         <tfoot>
             <tr>
                 <th>Name</th>
-                <th>Position</th>
+                <th>Type</th>
                 <th>City</th>
                 <th>Expiry date</th>
                 <th>Salary</th>
