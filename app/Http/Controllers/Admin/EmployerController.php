@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class EmployerController extends Controller
@@ -18,6 +19,14 @@ class EmployerController extends Controller
         // view all the employer
         $employerData = User::where('role','employer')->get();
         return view('Backend.Admin.Employer.index',compact('employerData'));
+    }
+
+    public function indexCanditate()
+    {
+        // view all the employer
+        $candIDs = User::where('role','candidate')->pluck('id')->toArray();
+        $candidates = DB::table('about_mes')->whereIn('user_id',$candIDs)->get();
+        return view('Backend.Admin.Candidate.index',compact('candidates'));
     }
 
     /**
@@ -83,6 +92,12 @@ class EmployerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $candIDs = User::where('id',$id)->delete();
+        return back();
+    }
+    public function destroyCandidate($id)
+    {
+        $candIDs = User::where('id',$id)->delete();
+        return back();
     }
 }

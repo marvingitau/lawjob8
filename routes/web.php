@@ -75,7 +75,10 @@ Route::group(['middleware'=>'role:admin','prefix'=>'admin'],function () {
         Route::get('/employers',[EmployerController::class,'index'])->name('view.employers');
         Route::get('/create/employer',[EmployerController::class,'create'])->name('create.employer');
         Route::post('/store/employer',[EmployerController::class,'store'])->name('store.employer');
-        Route::post('/delete/employer/{id}/',[EmployerController::class,'destroy'])->name('delete.employer');
+        Route::get('/delete/employer/{id}/',[EmployerController::class,'destroy'])->name('delete.employer');
+        // Candidates
+        Route::get('/candidates',[EmployerController::class,'indexCanditate'])->name('view.candidates');
+        Route::get('/delete/candidates/{id}/',[EmployerController::class,'destroyCandidate'])->name('delete.candidate');
         // Tokens
         Route::get('/tokens',[TokensController::class,'index'])->name('show.tokens');
         Route::post('/tokens/create',[TokensController::class,'store'])->name('create.token');

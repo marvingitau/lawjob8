@@ -18,6 +18,9 @@
 
             </ul>
         </li>
+        <li>
+            <a href="{{ route('view.candidates')}}"><i class="fas fa-user"></i> Candidates</a>
+        </li>
 
         {{-- <li>
             <a href="#candidatw" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle no-caret-down"><i class="fas fa-user-circle"></i> Candidates</a>
