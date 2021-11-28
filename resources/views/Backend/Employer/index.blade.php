@@ -21,10 +21,12 @@
                             </div>
                         </div>
                         <div class="col-sm-8">
+                            <a href="{{route('job.application')}}">
                             <div class="detail">
                                 <p class="detail-subtitle">Go Home</p>
                                 <span class="number">Home Page</span>
                             </div>
+                            </a>
                         </div>
                     </div>
                     <div class="footer">
@@ -61,31 +63,7 @@
                 </div>
             </div>
         </div>
-        {{-- <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
-            <div class="card">
-                <div class="content">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="icon-big text-center">
-                                <i class="violet fas fa-eye"></i>
-                            </div>
-                        </div>
-                        <div class="col-sm-8">
-                            <div class="detail">
-                                <p class="detail-subtitle">Page views</p>
-                                <span class="number">28,210</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="footer">
-                        <hr />
-                        <div class="stats">
-                            <i class="fas fa-stopwatch"></i> For this Month
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
+
         <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
             <div class="card">
                 <div class="content">
@@ -106,6 +84,34 @@
                         <hr />
                         <div class="stats">
                             <i class="fas fa-envelope-open-text"></i> For this week
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
+            <div class="card">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="icon-big text-center">
+                                <i class="olive fas fa-user"></i>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <a href="{{route('job.application')}}">
+                                <div class="detail">
+                                    <p class="detail-subtitle">Job Application</p>
+                                    <span class="number">{{$AppUserID}}</span>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <hr />
+                        <div class="stats">
+                            <i class="fas fa-envelope-open-text"></i> For this system
                         </div>
                     </div>
                 </div>

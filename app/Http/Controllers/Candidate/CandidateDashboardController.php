@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Candidate;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class CandidateDashboardController extends Controller
 {
@@ -14,7 +15,10 @@ class CandidateDashboardController extends Controller
      */
         public function index()
     {
-        return view('Backend.Candidate.index');
+        $uid = auth()->user()->id;
+        $user_profile_exists=DB::table('about_mes')->where('user_id',auth()->user()->id)->count();
+        $appliedAmount = DB::table('applieds')->where('user_id',$uid)->count();
+        return view('Backend.Candidate.index',compact('user_profile_exists','appliedAmount'));
     }
 
     /**

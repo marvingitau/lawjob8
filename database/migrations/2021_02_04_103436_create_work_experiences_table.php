@@ -28,6 +28,7 @@ class CreateWorkExperiencesTable extends Migration
             $table->unsignedInteger('end_year')->nullable();
             $table->boolean('is_current')->default(0);
             $table->text('job_responsibility')->nullable();
+            $table->text('extra_experience')->nullable();
 
 
 

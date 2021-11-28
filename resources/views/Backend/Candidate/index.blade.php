@@ -22,14 +22,9 @@
             </div>
             @endif
 
-                {{-- <div class="card">
-                    <div class="card-header">Dashboard</div>
 
-                    <div class="card-body">
-                     candidate {{ auth()->user() }}
-                        {{  Auth::guard()->user() }}
-                    </div>
-                </div> --}}
+
+
 
                 {{-- <div class="card mt-4">
 
@@ -337,6 +332,121 @@
                     </div>
                 </div> --}}
             </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
+                <div class="card">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="icon-big text-center">
+                                    <i class="teal  fas fa-home"></i>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="detail">
+                                    <a href="{{url('/')}}" target="_self" rel="noopener noreferrer">
+                                    <p class="detail-subtitle">Go Home</p>
+                                    <span class="number">Home Page</span>
+                                </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <hr />
+                            <div class="stats">
+                                <i class="fas fa-calendar"></i> For this Site
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
+                <div class="card">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="icon-big text-center">
+                                    <i class="orange fas fa-user"></i>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="detail">
+                                    <p class="detail-subtitle">Profile Created</p>
+                                    @if ($user_profile_exists>0)
+                                    <span class="number">YES</span>
+                                    @else
+                                    <span class="number text-danger"> <b>NO</b> </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <hr />
+                            <div class="stats">
+                                <i class="fas fa-envelope-open-text"></i> For the system
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
+                <div class="card">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="icon-big text-center">
+                                    <i class="indigo fas fa-shopping-cart"></i>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <a href="{{route('candidate.view.cart')}}" target="_self" rel="noopener noreferrer">
+                                <div class="detail">
+                                    <p class="detail-subtitle">Access cart</p>
+                                    <span class="number">Cart Access</span>
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <hr />
+                            <div class="stats">
+                                <i class="fas fa-envelope-open-text"></i> For this site
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
+                <div class="card">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="icon-big text-center">
+                                    <i class="olive fas fa-briefcase"></i>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <a href="{{route('candidate.view.cart')}}" target="_self" rel="noopener noreferrer">
+                                <div class="detail">
+                                    <p class="detail-subtitle">Applied Jobs</p>
+                                    <span class="number">{{$appliedAmount}}</span>
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <hr />
+                            <div class="stats">
+                                <i class="fas fa-envelope-open-text"></i> For this site
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
     @endsection

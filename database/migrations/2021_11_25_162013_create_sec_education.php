@@ -21,7 +21,8 @@ class CreateSecEducation extends Migration
             $table->unsignedInteger('sec_start_year');
             $table->unsignedInteger('sec_start_month');
             $table->unsignedInteger('sec_end_year')->nullable();
-            $table->unsignedInteger('sec_end_month')->nullable();
+            $table->unsignedInteger('sec_end_month')->nullable();//
+            $table->text('additional_highschools')->nullable();
             $table->timestamps();
         });
     }

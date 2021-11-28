@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Employer;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Models\Employer\JobPostings;
 
 class AppliedJobsController extends Controller
 {
@@ -14,9 +16,27 @@ class AppliedJobsController extends Controller
      */
     public function index()
     {
-        return view('Backend.Employer.application_list');
+        $uid = auth()->user()->id;
+        $jobIDs = JobPostings::where('user_id',$uid)->pluck('id')->toArray();
+
+        $AppUserID = DB::table('applieds')->whereIn('job_id',$jobIDs)->get()->toArray();
+        return view('Backend.Employer.application_list',compact('AppUserID'));
     }
 
+    public function viewCandidate(Request $request,$id)
+    {
+        $uid =$id;
+
+        $aboutMe = DB::table('about_mes')->where('user_id',$uid)->first();
+        $skills= DB::table('job_skills')->where('user_id',$uid)->get();
+        $experiences = DB::table('work_experiences')->where('user_id',$uid)->first();
+        $education = DB::table('education')->where('user_id',$uid)->first();
+        $sec_education = DB::table('sec_education')->where('user_id',$uid)->first();
+        $resumes = DB::table('resumes')->where('user_id',$uid)->get();
+        if(is_null($aboutMe)||is_null($skills)||is_null($experiences)||is_null($education)||is_null($sec_education)||is_null($sec_education))
+            return back()->with('message','Error with Profile');
+        return view('Backend.Employer.candidate_profile',compact(['aboutMe','skills','experiences','education','sec_education','resumes']));
+    }
     /**
      * Show the form for creating a new resource.
      *

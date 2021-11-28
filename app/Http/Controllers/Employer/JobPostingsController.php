@@ -42,7 +42,7 @@ class JobPostingsController extends Controller
         // $jobAttribPackage = JobAttributs::getAttr('package');
         // dd($jobCategory);
 
-        $creditList = Order::where('user_id',$usr->id)->where('quantity','>',0)->get();
+        $creditList = Order::where('user_id',$usr->id)->where('quantity','>',0)->where('order_verify','>',0)->get();
         // dd($creditList);
 
         return view('Backend.Employer.create_job',compact(['jobAttrib','jobAttribCountry','jobAttribCity','creditList','jobAttribSalary','jobCategory']));
@@ -74,7 +74,7 @@ class JobPostingsController extends Controller
 
         $ord = Order::where('package',$order_id)->first();
         // $ord = Order::findOrFail($order_id);
-        $decrease = $ord->increment('quantity','1');
+        $decrease = $ord->increment('quantity','-1');
 
         if($decrease){
             $res = JobPostings::create($req+['expiry_date'=>$ord->expiry_date,'user_id'=>auth()->user()->id]);
@@ -94,7 +94,7 @@ class JobPostingsController extends Controller
             }
 
         }else{
-            Order::findOrFail($order_id)->increment('quantity','1');
+            Order::findOrFail($order_id)->increment('quantity','-1');
             // session()->put('danger','Failed to Decreament.');
             return back()->with('danger','Failed to Decreament.');
             // return redirect('employer');

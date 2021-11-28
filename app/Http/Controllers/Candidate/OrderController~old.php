@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Controllers\Employer;
+namespace App\Http\Controllers\Candidate;
 use Carbon\Carbon;
 use PaymentController;
 use App\Traits\Payments;
@@ -22,14 +22,8 @@ class OrderController extends Controller{
      */
     public function index()
     {
-        if(auth()->user()->role == 'employer'){
-        $tokens = Tokens::where('user','!=','candidate')->get();
-        return view('Backend.Employer.Order.index',compact('tokens'));
-
-        }else{
         $tokens = Tokens::where('user','candidate')->get();
         return view('Backend.Candidate.Order.index',compact('tokens'));
-        }
     }
 
     /**
@@ -38,13 +32,8 @@ class OrderController extends Controller{
 
     public function approved()
     {
-        if(auth()->user()->role == 'employer'){
         $res = Order::where('order_verify',1)->get();
-        return view('Backend.Employer.Order.Approved',compact('res'));
-        }else{
-            $res = Order::where('order_verify',1)->get();
-            return view('Backend.Candidate.Order.Approved',compact('res'));
-        }
+        return view('Backend.Candidate.Order.Approved',compact('res'));
     }
 
 
@@ -75,13 +64,13 @@ class OrderController extends Controller{
         $userId = auth()->user()->id; // or any string represents user identifier
         $data=\Cart::getContent()->toArray();
 
-        // dd($data);
+
         $now = Carbon::now();
         $trackingid =date('YmdHis');
 
         foreach ($data as $key => $value) {
-            //What is the use of checking for duplication?
-            $order = Order::where('package', $value['attributes']['package'])->where('session_id',Session::get('emp_session_id'))->where('user_id',$userId)->where('quantity',$value['quantity'])->first();
+            $expriry = $now->addDays($value['attributes']['duration']);
+            $order = Order::where('package', $value['attributes']['package'])->first();
             if ($order !== null) {
 
                 $order->update(
@@ -90,29 +79,27 @@ class OrderController extends Controller{
                         'users_email'=>$user_data->email,
                         'payment_method'=>"NA",
                         'quantity'=>$value['quantity'],
-                        'prodid'=>$value['attributes']['prodid'],
                         'grand_total'=>(($value['quantity']*$value['price'])*(env('VAT')/100)+($value['quantity']*$value['price']) ),
                         'order_verify'=>0,
                         'trackingid'=>$trackingid,
-                        'expiry_date'=>Carbon::now()->addDays($value['attributes']['duration'])->format('Y-m-d H:i:s'),
+                        'expiry_date'=>$expriry,
                         'session_id'=>Session::get('emp_session_id'),
                     ]
                 );
 
             } else {
 
-                $createdOrd=Order::create([
+                Order::create([
 
                     'package'=>$value['attributes']['package'],
                     'user_id'=>$user_data->id,
                     'users_email'=>$user_data->email,
                     'payment_method'=>"NA",
                     'quantity'=>$value['quantity'],
-                    'prodid'=>$value['attributes']['prodid'],
                     'grand_total'=>(($value['quantity']*$value['price'])*(env('VAT')/100)+($value['quantity']*$value['price']) ),
                     'order_verify'=>0,
                     'trackingid'=>$trackingid,
-                    'expiry_date'=>Carbon::now()->addDays($value['attributes']['duration'])->format('Y-m-d H:i:s'),
+                    'expiry_date'=>$expriry,
                     'session_id'=>Session::get('emp_session_id'),
 
                 ]);
@@ -122,12 +109,8 @@ class OrderController extends Controller{
 
 
         }
-        \Cart::session($userId)->clear();
-        if(auth()->user()->role == 'employer'){
-            return redirect()->to('employer/payment');
-        }else{
-            return redirect()->to('candidate/payment');
-        }
+
+        return redirect()->to('candidate/payment');
     }
 
     /**
@@ -154,26 +137,14 @@ class OrderController extends Controller{
                     $oder->order_verify = 1;
                     $oder->save();
                     // dd('then');
-                    if(auth()->user()->role == 'employer'){
-                    return redirect('employer');
-                    }else{
-            return redirect('candidate');
-                    }
+                    return redirect('candidate');
             }else{
                 // return back()->with('danger','Failed To Approve Order');
-                if(auth()->user()->role == 'employer'){
-                return redirect('employer');
-                }else{
-            return redirect('candidate');
-                }
+                return redirect('candidate');
             }
         }else{
             // return back()->with('danger','Missing Notification Type');
-            if(auth()->user()->role == 'employer'){
-            return redirect('employer');
-            }else{
             return redirect('candidate');
-            }
         }
 
 

@@ -48,11 +48,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Employer Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Employer Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -62,9 +62,19 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @if (Auth::user()->role=='employer')
                                     <a class="dropdown-item" href="{{ route('employer.dashboard') }}">
-                                    {{ __('Dashboard') }}
-                                    </a>
+                                     {{ __('Dashboard') }}
+                                     </a>
+                                    @elseif(Auth::user()->role=='candidate')
+                                    <a class="dropdown-item" href="{{ route('candidate.dashboard') }}">
+                                     {{ __('Dashboard') }}
+                                     </a>
+                                    @else
+                                    <a class="dropdown-item" href="{{ route('admin.dashboard') }}">
+                                     {{ __('Dashboard') }}
+                                     </a>
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">

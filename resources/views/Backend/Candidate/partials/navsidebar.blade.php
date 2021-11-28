@@ -13,19 +13,19 @@
                     <a href="{{ route('candidate.profile.create')}}"><i class="fas fa-user-plus"></i> Create</a>
                 </li>
                 <li>
-                    <a href=""><i class="fas fa-list"></i> View</a>
+                    <a href="{{route('candidate.profile')}}"><i class="fas fa-list"></i> View</a>
                 </li>
             </ul>
         </li>
         <li class="nav-item">
-            <a href="#jobpost" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle no-caret-down"><i class="fas fa-edit"></i> Job Post</a>
+            <a href="#jobpost" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle no-caret-down"><i class="fas fa-edit"></i> Jobs</a>
             <ul class="collapse list-unstyled" id="jobpost">
                 <li>
-                    <a href="{{ route('job.list') }}"><i class="fas fa-align-left"></i> Posted Jobs</a>
+                    <a href="{{ route('applied.jobs') }}"><i class="fas fa-align-left"></i> Applied Jobs</a>
                 </li>
 
                 <li>
-                    <a href="{{ route('job.create') }}"><i class="fas fa-briefcase"></i> Create Job Post</a>
+                    <a href="{{ route('backend.job.list') }}"><i class="fas fa-briefcase"></i>Apply Job</a>
                 </li>
 
 
@@ -34,7 +34,7 @@
 
 
         <li>
-            <a href="{{ route('order.forms') }}"><i class="fas fa-credit-card"></i> Create Credit</a>
+            <a href="{{ route('candidate.order.forms') }}"><i class="fas fa-credit-card"></i> Create Credit</a>
         </li>
 
     </ul>

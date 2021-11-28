@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Employer;
+namespace App\Http\Controllers\Candidate;
 
 use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
-use App\Models\Employer\Order;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 
@@ -50,12 +48,7 @@ class CartController extends Controller
             $total_price += ($x* $y);
         }
         $plus_vat = $total_price + $total_price*(env('VAT')/100);
-        $user_profile_exists=DB::table('about_mes')->where('user_id',auth()->user()->id)->count();
-        if(auth()->user()->role == 'employer'){
-        return view('Backend.Employer.Order.Cart.index',compact('cart_data','total_price','plus_vat'));
-        }else{
-        return view('Backend.Candidate.Order.Cart.index',compact('cart_data','total_price','plus_vat','user_profile_exists'));
-        }
+        return view('Backend.Candidate.Order.Cart.index',compact('cart_data','total_price','plus_vat'));
     }
 
     /**
@@ -86,7 +79,7 @@ class CartController extends Controller
             'days'=>'required', //cart primary key
             'product_name'=>'required',
             'price'=>'required',
-            'prodid'=>'required',
+
         ]);
         try {
             // add single items at one time
@@ -99,7 +92,6 @@ class CartController extends Controller
                     'attributes' => array(
                         'package' => $req['package'],
                         'duration'=>$req['days'],
-                        'prodid' => $req['prodid'],
                     )
                 ),
             ));
@@ -171,10 +163,6 @@ class CartController extends Controller
             \Cart::update($id, array(
                 'quantity' => $value, // so if the current product has a quantity of 4, it will subtract 1 and will result to 3
             ));
-            // Remove previuosly place item in Order table
-            //to prevent duplication
-            // so long as its not verified
-            Order::where('prodid',\Cart::get($id)->toArray()['attributes']['prodid'])->where('order_verify','<=',0)->delete();
             return back()->with('message','Updated Cart ');
         } catch (\Throwable $th) {
             return back()->with('message','Erro in Updating Cart');
@@ -193,9 +181,7 @@ class CartController extends Controller
         try {
             //    set session
             $this->setCartSession();
-            // dd(\Cart::get($id)->toArray()['attributes']['prodid']);
 
-            Order::where('prodid',\Cart::get($id)->toArray()['attributes']['prodid'])->where('order_verify','<=',0)->delete();
             /**
              * removes an item on cart by item ID
              *
@@ -203,8 +189,6 @@ class CartController extends Controller
              */
 
             \Cart::session(auth()->user()->id)->remove($id);
-            // Remove previuosly place item in Order table
-            //to prevent duplication
 
             return back()->with('message','Deleted Item');
         } catch (\Throwable $th) {

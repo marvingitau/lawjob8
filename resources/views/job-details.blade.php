@@ -37,9 +37,27 @@ banner -->
 <!--=================================
 banner -->
 <div class="jdetail-div" style="background-color: #f0f0f0;padding: 1.1rem 0rem;">
+
     <div class="container">
+        @if(Session::has('message'))
+        <div class="alert alert-success text-center" role="alert">
+            <strong>Alert! &nbsp;</strong>{{Session::get('message')}}
+        </div>
+       @endif
+       @if(Session::has('danger'))
+       <div class="alert alert-danger text-center" role="alert">
+           <strong>Alert! &nbsp;</strong>{{Session::get('danger')}}
+       </div>
+      @endif
         @if ($singleJob)
-            <h2 class="my-3">{{ $singleJob['title'] }}</h2>
+            <div class="d-flex">
+                <h2 class="my-3">{{ $singleJob['title'] }}</h2>
+                @if (Auth::check())
+                    <a name="" id="" class="btn btn-primary" style="padding: 25px 25px !important;margin-left: auto;" href="{{ route('apply.job',$singleJob['id'])}}" role="button">Apply <i class="fa fa-upload" aria-hidden="true"></i></a>
+                @else
+
+                @endif
+            </div>
             {{-- Job Summary --}}
             <h3 class="my-5">|&nbsp; Job Summary</h3>
             <div class="jsummary mb-4">
@@ -51,7 +69,7 @@ banner -->
                 {!! $singleJob['job_description']!!}
             </div>
 
-            <h5 class="my-5">+ &nbsp; Send CV and Necesary Documents</h5>
+            <h5 class="my-5">+ &nbsp; For Query</h5>
             <div class="jsummary mb-4">
                 {{ \App\Models\User::where('id',$singleJob->user_id)->first()->userData->employer_hr_email}}
             </div>

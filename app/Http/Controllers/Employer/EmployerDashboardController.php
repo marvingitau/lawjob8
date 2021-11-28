@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Employer;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Employer\JobPostings;
 
@@ -15,8 +16,13 @@ class EmployerDashboardController extends Controller
      */
     public function index()
     {
+        $uid = auth()->user()->id;
+        $jobIDs = JobPostings::where('user_id',$uid)->pluck('id')->toArray();
+
+        $AppUserID = DB::table('applieds')->whereIn('job_id',$jobIDs)->count();
+
         $jCount=JobPostings::where('user_id',auth()->user()->id)->count();
-        return view('Backend.Employer.index',compact('jCount'));
+        return view('Backend.Employer.index',compact('jCount','AppUserID'));
     }
 
     /**

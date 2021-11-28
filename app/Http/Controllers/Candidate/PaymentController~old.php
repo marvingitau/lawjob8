@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Employer;
+namespace App\Http\Controllers\Candidate;
 
 use Pesapal;
 use Darryldecode\Cart\Cart;
@@ -21,14 +21,9 @@ class PaymentController extends Controller
     public function payment(Request $request){//initiates payment
         $orderItems= compact($request->all());
         $orderSumCost = Order::where('session_id',Session::get('emp_session_id'))->sum('grand_total');
-        if($orderSumCost>1000){
-            return back()->with('message','Exceeds 1000');
-        }
         $orderData = Order::where('session_id',Session::get('emp_session_id'))->first();
-
+        // dd(Auth::guard()->id());
         $RANDO = rand(100000000,999999999);
-        //set all record with similar session with transactionid
-        Order::where('session_id',Session::get('emp_session_id'))->update(['transactionid'=>$RANDO]);
 
         $payments = new Payment;
         $payments -> businessid = Auth::guard()->id(); //Business ID
@@ -40,59 +35,41 @@ class PaymentController extends Controller
         $payments -> amount = 1;
         $payments -> save();
 
+        $orderData->transactionid=$RANDO;
+        $orderData-> save();
 
-        if(auth()->user()->role == 'employer'){
+        $user=DB::table('about_mes')->where('user_id',auth()->user()->id)->first();
         $details = array(
             'amount' => $payments -> amount,
             'description' => 'Transaction',
             'type' => 'MERCHANT',
-            'first_name' => auth()->user()->userData->first_name,
-            'last_name' => auth()->user()->userData->last_name,
+            'first_name' => $user->fname,
+            'last_name' => $user->lname,
             'email' => auth()->user()->email,
-            'phonenumber' => '254-'.auth()->user()->userData->phone,
+            'phonenumber' => '254-'.$user->phone,
             'reference' => $payments -> transactionid,
             'height'=>'400px',
             'currency' => env('PESAPAL_CURRENCY')
         );
-        }else{
-            $user=DB::table('about_mes')->where('user_id',auth()->user()->id)->first();
-            $details = array(
-                'amount' => $payments -> amount,
-                'description' => 'Transaction',
-                'type' => 'MERCHANT',
-                'first_name' => $user->fname,
-                'last_name' => $user->lname,
-                'email' => auth()->user()->email,
-                'phonenumber' => '254-'.$user->phone,
-                'reference' => $payments -> transactionid,
-                'height'=>'500px',
-                'currency' => env('PESAPAL_CURRENCY')
-            );
-        }
-
         $iframe=Pesapal::makePayment($details);
 
         // dd($iframe);
-        if(auth()->user()->role == 'employer'){
-        return view('Backend.Employer.Order.Payment', compact('iframe'));
-        }else{
         return view('Backend.Candidate.Order.Payment', compact('iframe'));
-        }
     }
 
 
     public function paymentsuccess(Request $request)//just tells u payment has gone thru..but not confirmed
     {
         $trackingid = $request->input('tracking_id');
+        // dd($trackingid);
         $ref = $request->input('merchant_reference');
 
         /*
         / AT THIS POINT ADD THE ORDER TRACKING NO TO USE IT TO APPROVE THE ORDER DURING PAYMENT APPROVAL
         */
-        Order::where('transactionid',$ref)->update(['order_verify'=>1,'trackingid'=> $trackingid]);
-        // $latest_order -> order_verify = 1; // make the bought token viable for operation
-        // $latest_order -> trackingid = $trackingid;
-        // $latest_order -> save();
+        $latest_order=Order::where('transactionid',$ref)->first();
+        $latest_order -> trackingid = $trackingid;
+        $latest_order -> save();
 
 
         $payments = Payment::where('transactionid',$ref)->first();
@@ -104,11 +81,7 @@ class PaymentController extends Controller
 
         //go back home
         $payments=Payment::where('businessid',auth()->user()->id)->orderBy('created_at', 'desc')->first();
-        if(auth()->user()->role == 'employer'){
-        return redirect('employer')->with('ok', 'You have successfully made payment, please wait while we update your payment records');
-        }else{
         return redirect('candidate')->with('ok', 'You have successfully made payment, please wait while we update your payment records');
-        }
         // return view('Backend.Employer.Order.PaymentConfirmation', compact('payments'));
     }
     //This method just tells u that there is a change in pesapal for your transaction..

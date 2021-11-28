@@ -13,37 +13,46 @@
     <table class="table table-bordered" id="jobList" width="100%" cellspacing="0">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>City</th>
-                <th>Expiry date</th>
-                <th>Salary</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>DOB</th>
+                <th>Phone</th>
+                <th>Gender</th>
+                <th>Action</th>
+
             </tr>
         </thead>
         <tfoot>
             <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>City</th>
-                <th>Expiry date</th>
-                <th>Salary</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>DOB</th>
+                <th>Phone</th>
+                <th>Gender</th>
+                <th>Action</th>
             </tr>
         </tfoot>
         <tbody>
-            {{-- @if($jobs)
-                @foreach ($jobs as $job)
+            @if($AppUserID)
+                @foreach ($AppUserID as $user)
+                @php( $userData= DB::table('about_mes')->where('user_id',$user->user_id)->first())
+                @if ($userData)
                 <tr>
-                    <td>{{$job->title }}</td>
-                    <td>{{ \App\Models\Admin\JobAttributs::where('id',$job->job_type)->first()->name }}</td>
-                    <td>{{ \App\Models\Admin\JobAttributs::where('id',$job->city)->first()->name }}</td>
-                    <td>{{$job->expiry_date }}</td>
-                    <td>{{ number_format($job->monthly_salary, 2, '.', ',') }}</td>
+                    <td>{{$userData->fname}}</td>
+                    <td>{{$userData->lname}}</td>
+                    <td>{{$userData->dob}}</td>
+                    <td>{{$userData->phone}}</td>
+                    <td>{{$userData->gender}}</td>
+                    <td><a name="" id="" class="btn btn-primary" href="{{route('application.view.candidate',$user->user_id)}}" role="button"><i class="fa fa-eye"> View </i></a>
+                    </td>
+
 
                 </tr>
+                @endif
                 @endforeach
             @else
 
-            @endif --}}
+            @endif
         </tbody>
     </table>
 

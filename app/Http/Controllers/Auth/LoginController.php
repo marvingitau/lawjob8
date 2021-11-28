@@ -47,6 +47,11 @@ class LoginController extends Controller
                 return '/employer';
             break;
             case 'candidate':
+                $emp_session_id=Session::get('emp_session_id');
+                if(empty($emp_session_id)){
+                    $emp_session_id=Str::random(40);
+                    Session::put('emp_session_id',$emp_session_id);
+                }
                 return '/candidate';
             break;
 

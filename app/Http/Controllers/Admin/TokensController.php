@@ -45,7 +45,8 @@ class TokensController extends Controller
                 'package'=>'required',
                 'days'=>'required',
                 'product_name'=>'required',
-                'price'=>'required'
+                'price'=>'required',
+                'user'=>'',
             ]
             );
         Tokens::create($data);

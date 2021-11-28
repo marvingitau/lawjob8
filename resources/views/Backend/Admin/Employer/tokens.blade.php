@@ -54,6 +54,12 @@
                             <input type="number"
                               class="form-control" name="days" id="dys" aria-describedby="helpId" placeholder="" min="1">
                         </div>
+                        <div class="form-check my-3">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="user" id="" value="candidate">
+                              Candidate
+                            </label>
+                        </div>
 
                     </div>
                     <div class="col-md-6">
@@ -70,7 +76,11 @@
                               class="form-control" name="price" id="prce" aria-describedby="helpId" placeholder="" min="1">
                         </div>
 
+
+
                     </div>
+
+
 
                 </div>
                 <button type="submit" class="btn btn-primary my-2 w-100">Submit</button>
@@ -90,6 +100,7 @@
                     <th>Days</th>
                     <th>Product Name</th>
                     <th>Price</th>
+                    <th>User</th>
                     <th>Action</th>
 
                 </tr>
@@ -100,6 +111,7 @@
                     <th>Days</th>
                     <th>Product Name</th>
                     <th>Price</th>
+                    <th>User</th>
                     <th>Action</th>
                 </tr>
             </tfoot>
@@ -112,6 +124,7 @@
                         <td>{{is_null($allToken['days'])?'':$allToken['days'] }}</td>
                         <td><?php echo is_null($allToken['product_name'])?'':$allToken['product_name']?></td>
                         <td>{{is_null($allToken['price'])?'':$allToken['price']}}</td>
+                        <td>{{is_null($allToken['user'])?'':$allToken['user']}}</td>
 
                         <td>
                             <a name="delete" id="" class="btn btn-danger" href="{{ route('delete.token',$allToken->id)}}" role="button">Delete <i class="fa fa-trash" aria-hidden="true"></i></a>

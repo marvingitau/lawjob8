@@ -6,6 +6,7 @@ use App\Http\Controllers\JobListingController;
 use App\Http\Controllers\Admin\TokensController;
 use App\Http\Controllers\Employer\CartController;
 use App\Http\Controllers\Admin\EmployerController;
+use App\Http\Controllers\Candidate\JobsController;
 use App\Http\Controllers\Employer\OrderController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Employer\ProfileController;
@@ -92,11 +93,29 @@ Route::group(['prefix'=>'candidate'],function(){
         Route::get('/Profile/View', [AboutMeController::class,'index'])->name('candidate.profile');
         Route::get('/Profile/Create', [AboutMeController::class,'create'])->name('candidate.profile.create');
         Route::post('/Profile/Store', [AboutMeController::class,'store'])->name('candidate.profile.store');
-        // Route::post('/about-me/create', [AboutMeController::class,'store'])->name('profile.create');
-        // Route::post('/experience/create', 'WorkExperienceController@store')->name('experience.create');
-        // Route::post('/education/create', 'EducationController@store')->name('education.create');
-        // Route::post('/skill/create', 'JobSkillController@store')->name('skill.create');
-        // Route::post('/resume/create', 'ResumeController@store')->name('resume.create');
+        Route::post('/Profile/Update/{cat}', [AboutMeController::class,'update'])->name('candidate.profile.update');
+        Route::post('/Profile/New/{cat}', [AboutMeController::class,'additional_inclusion'])->name('candidate.profile.new');
+
+        Route::get('/Applied/Jobs', [JobsController::class,'index'])->name('applied.jobs');
+        Route::get('/Applied/Job/{id}', [JobsController::class,'AppliedJob'])->name('applied.job');
+        Route::get('/Apply/Job/{id}', [JobsController::class,'ApplyJob'])->name('apply.job');
+        Route::get('/Job/List', [JobsController::class,'jobList'])->name('backend.job.list');
+        Route::get('/Job/View/{id}', [JobsController::class,'JobView'])->name('backend.job.view');
+        Route::post('/Job/Apply/{id}', [JobsController::class,'JobApply'])->name('backend.job.apply');
+
+        Route::post('/Cart/Add/{days}', [CartController::class,'store'])->name('candidate.add.cart');
+        Route::get('/Cart/View',[CartController::class,'index'])->name('candidate.view.cart');
+        Route::get('/Cart/Update-quantity/{id}/{value}',[CartController::class,'update'])->name('cart.update');
+        Route::get('/Cart/Delete/{id}',[CartController::class,'destroy'])->name('cart.delete');
+        Route::get('/Order/Forms', [OrderController::class,'index'])->name('candidate.order.forms');
+        Route::post('/Order/Checkout', [OrderController::class,'create'])->name('candidate.checkout.cart');
+        Route::get('/Order/Approved', [OrderController::class,'approved'])->name('candidate.checkout.approved');
+        Route::group(['prefix' => '/payment'], function () {
+            //PESAPAL
+            Route::get('/', [App\Http\Controllers\Employer\PaymentController::class,'payment']);
+            Route::get('donepayment',[App\Http\Controllers\Employer\PaymentController::class,'paymentsuccess'])->name('paymentsuccess');
+            Route::get('paymentconfirmation', [OrderController::class,'store'])->name('payment.confirmation');
+        });
 
     });
 
@@ -124,6 +143,7 @@ Route::group(['prefix'=>'employer'],function(){
         Route::get('/Job/List', [JobPostingsController::class,'index'])->name('job.list');
         Route::get('/Settings', [SettingsController::class,'index'])->name('settings');
         Route::get('/Applications', [AppliedJobsController::class,'index'])->name('job.application');
+        Route::get('/Application/View/{id}', [AppliedJobsController::class,'viewCandidate'])->name('application.view.candidate');
 
 
 

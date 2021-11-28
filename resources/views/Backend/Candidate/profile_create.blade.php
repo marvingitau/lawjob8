@@ -47,13 +47,21 @@
                             <div class="form-group">
                               <label for="fname">First Name</label>
                               <input type="text"
-                                class="form-control" name="fname" id="fname" aria-describedby="helpId" placeholder="Firt Name" required>
+                                class="form-control" name="fname" id="fname" aria-describedby="helpId" placeholder="Firt Name" required value="{{old('fname')}}">
                             </div>
 
                             <div class="form-group">
                               <label for="">Phone</label>
-                              <input type="text"
-                                class="form-control" name="phone" id="phone_profile" aria-describedby="helpId" placeholder="Enter Phone" required>
+
+
+                              <div class="d-flex">
+                                <input type="text"
+                                class="form-control w-25" name="" id="" aria-describedby="helpId" placeholder="+254" value="+254" disabled>
+
+                            <input type="text"
+                              class="form-control w-75" name="phone" id="phone" aria-describedby="helpId" placeholder="Enter 9 digits from +254" required>
+                              </div>
+
                             </div>
 
 
@@ -69,7 +77,7 @@
                             <div class="form-group">
                                 <label for="lname">Last Name</label>
                                 <input type="text"
-                                  class="form-control" name="lname" id="lname" aria-describedby="helpId" placeholder="Last Name" required>
+                                  class="form-control" name="lname" id="lname" aria-describedby="helpId" placeholder="Last Name" required value="{{old('lname')}}">
                               </div>
 
                               <div class="form-group">
@@ -93,14 +101,14 @@
                                 <div class="form-group">
                                   <label for="">School Name</label>
                                   <input type="text"
-                                    class="form-control" name="institution[]" id="institution" aria-describedby="helpId" placeholder="Institution" required>
+                                    class="form-control" name="institution" id="institution" aria-describedby="helpId" placeholder="Institution" required>
 
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                       <label for="">Qualification</label>
-                                      <select class="form-control" name="qualification_level_id[]" id="qualification_level_id" required>
+                                      <select class="form-control" name="qualification_level_id" id="qualification_level_id" required>
                                         @php($edu_attr = \App\Models\Admin\JobAttributs::getAttr('education_qualification'))
                                         @if ($edu_attr)
                                             {{-- <option>Choose </option> --}}
@@ -115,15 +123,16 @@
                                 <div class="form-group">
                                     <label for="">Title</label>
                                     <input type="text"
-                                      class="form-control" name="coursetitle[]" id="coursetitle" aria-describedby="helpId" placeholder="Course Name" required>
+                                      class="form-control" name="coursetitle" id="coursetitle" aria-describedby="helpId" placeholder="Course Name" required>
                                 </div>
                             </div>
 
                             <div class="col-md-3">
                                 <div class="form-group">
                                       <label for="">Start Year</label>
-                                      <select class="form-control" name="start_year[]" id="start_year" required>
+                                      <select class="form-control" name="start_year" id="start_year" required>
                                         <?php $y= years_menu()?>
+                                        <option value=""></option>
                                         @foreach ($y as $item)
                                             <option value="{{$item}}">{{$item}}</option>
                                         @endforeach
@@ -133,8 +142,9 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="">Start Month</label>
-                                    <select class="form-control" name="start_month[]" id="start_month" required>
+                                    <select class="form-control" name="start_month" id="start_month" required>
                                         <?php $m=months_menu()?>
+                                        <option value=""></option>
                                         @foreach ($m as $item)
                                             <option value="{{$item}}">{{$item}}</option>
                                         @endforeach
@@ -166,18 +176,18 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-10">
-                                <textarea name="additional_colleges" class="w-100" placeholder="Additional Education"></textarea>
+                            <div class="col-md-12">
+                                <textarea name="additional_colleges" id="additional_college" rows="10" cols="80" class="w-100" placeholder="Additional Education"></textarea>
                             </div>
-                            <div class="col-md-2">
-                                {{-- <div class="input-group-btn h-100">
+                            {{-- <div class="col-md-2">
+                                <div class="input-group-btn h-100">
                                     <button class="btn btn-success tr-btn-add w-100 h-100" type="button"><i class="fa fa-plus"></i> Add</button>
-                                </div> --}}
-                            </div>
+                                </div>
+                            </div> --}}
 
                         </div>
 
-                        <div class="row tr-clone hide d-none">
+                        {{-- <div class="row tr-clone hide d-none">
                             <div class="col-md-4">
                                 <div class="form-group">
                                   <label for="">School Name</label>
@@ -192,7 +202,6 @@
                                       <select class="form-control" name="qualification_level_id[]" id="qualification_level_id" required>
                                         @php($edu_attr = \App\Models\Admin\JobAttributs::getAttr('education_qualification'))
                                         @if ($edu_attr)
-                                            {{-- <option>Choose </option> --}}
                                             @foreach ($edu_attr as $jb)
                                                 <option value="{{$jb['id']}}">{{$jb['name']}}</option>
                                             @endforeach
@@ -263,7 +272,7 @@
                                 </div>
                             </div>
 
-                        </div>
+                        </div> --}}
                     </div>
 
                     <h3 class="my-2">High School</h3>
@@ -274,17 +283,17 @@
                                 <div class="form-group">
                                   <label for="">School Name</label>
                                   <input type="text"
-                                    class="form-control" name="sec_institution[]" id="sec_institution" aria-describedby="helpId" placeholder="Institution" required>
+                                    class="form-control" name="sec_institution" id="sec_institution" aria-describedby="helpId" placeholder="Institution" required>
 
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                       <label for="">Qualification</label>
-                                      <select class="form-control" name="sec_qualification_level_id[]" id="sec_qualification_level_id" required>
+                                      <select class="form-control" name="sec_qualification_level_id" id="sec_qualification_level_id" required>
                                         @php($edu_attr = \App\Models\Admin\JobAttributs::getAttr('education_qualification'))
                                         @if ($edu_attr)
-                                            {{-- <option>Choose </option> --}}
+
                                             @foreach ($edu_attr as $jb)
                                                 <option value="{{$jb['id']}}">{{$jb['name']}}</option>
                                             @endforeach
@@ -299,8 +308,9 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                       <label for="">Start Year</label>
-                                      <select class="form-control" name="sec_start_year[]" id="sec_start_year" required>
+                                      <select class="form-control" name="sec_start_year" id="sec_start_year" required>
                                         <?php $y= years_menu()?>
+                                        <option></option>
                                         @foreach ($y as $item)
                                             <option value="{{$item}}">{{$item}}</option>
                                         @endforeach
@@ -310,8 +320,9 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="">Start Month</label>
-                                    <select class="form-control" name="sec_start_month[]" id="sec_start_month" required>
+                                    <select class="form-control" name="sec_start_month" id="sec_start_month" required>
                                         <?php $m=months_menu()?>
+                                        <option></option>
                                         @foreach ($m as $item)
                                             <option value="{{$item}}">{{$item}}</option>
                                         @endforeach
@@ -321,9 +332,9 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                       <label for="">End Year</label>
-                                      <select class="form-control" name="sec_end_year[]" id="sec_end_year" required>
+                                      <select class="form-control" name="sec_end_year" id="sec_end_year" required>
                                         <?php $y= years_menu()?>
-                                        <option value=""></option>
+                                        <option></option>
                                         @foreach ($y as $item)
                                             <option value="{{$item}}">{{$item}}</option>
                                         @endforeach
@@ -335,7 +346,7 @@
                                     <label for="">End Month</label>
                                     <select class="form-control" name="sec_end_month" id="sec_end_month" required>
                                         <?php $m= months_menu()?>
-                                        <option value=""></option>
+                                        <option></option>
                                         @foreach ($m as $item)
                                             <option value="{{$item}}">{{$item}}</option>
                                         @endforeach
@@ -343,18 +354,18 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-10">
-                                <textarea name="additional_highschools" class="w-100" placeholder="Additional Education"></textarea>
+                            <div class="col-md-12">
+                                <textarea name="additional_highschools" id="additional_highschool" rows="10" cols="80"  class="w-100" placeholder="Additional Education"></textarea>
                             </div>
-                            <div class="col-md-2">
-                                {{-- <div class="input-group-btn h-100">
+                            {{-- <div class="col-md-2">
+                                <div class="input-group-btn h-100">
                                     <button class="btn btn-success tr-btn-ad2 w-100 h-100" type="button"><i class="fa fa-plus"></i> Add</button>
-                                </div> --}}
-                            </div>
+                                </div>
+                            </div> --}}
 
                         </div>
 
-                        <div class="row tr-clon2 hide d-none">
+                        {{-- <div class="row tr-clon2 hide d-none">
                             <div class="col-md-4">
                                 <div class="form-group">
                                   <label for="">School Name</label>
@@ -369,7 +380,6 @@
                                       <select class="form-control" name="sec_qualification_level_id[]" id="sec_qualification_level_id" required>
                                         @php($edu_attr = \App\Models\Admin\JobAttributs::getAttr('education_qualification'))
                                         @if ($edu_attr)
-                                            {{-- <option>Choose </option> --}}
                                             @foreach ($edu_attr as $jb)
                                                 <option value="{{$jb['id']}}">{{$jb['name']}}</option>
                                             @endforeach
@@ -435,7 +445,7 @@
                                 </div>
                             </div>
 
-                        </div>
+                        </div> --}}
                     </div>
 
                 </section>
@@ -449,7 +459,7 @@
                                 <div class="form-group">
                                   <label for="">Employer</label>
                                   <input type="text"
-                                    class="form-control" name="employer[]" id="employer" aria-describedby="helpId" placeholder="Employer" required>
+                                    class="form-control" name="employer" id="employer" aria-describedby="helpId" placeholder="Employer" required>
 
                                 </div>
                             </div>
@@ -457,17 +467,16 @@
                                 <div class="form-group">
                                     <label for="">Job Title</label>
                                     <input type="text"
-                                      class="form-control" name="job_title[]" id="job_title" aria-describedby="helpId" placeholder="Title" required>
+                                      class="form-control" name="job_title" id="job_title" aria-describedby="helpId" placeholder="Title" required>
                                 </div>
                             </div>
 
                             <div class="col-md-2">
                                 <div class="form-group">
                                       <label for="">Job Level</label>
-                                      <select class="form-control" name="job_level[]" id="job_level" required>
+                                      <select class="form-control" name="job_level" id="job_level" required>
                                         @php($exper_attr = \App\Models\Admin\JobAttributs::getAttr('job_level'))
                                         @if ($exper_attr)
-                                            {{-- <option>Choose </option> --}}
                                             @foreach ($exper_attr as $jb)
                                                 <option value="{{$jb['id']}}">{{$jb['name']}}</option>
                                             @endforeach
@@ -478,7 +487,7 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                       <label for="">Work Type</label>
-                                      <select class="form-control" name="work_type[]" id="work_type" required>
+                                      <select class="form-control" name="work_type" id="work_type" required>
                                         @php($exper_attr = \App\Models\Admin\JobAttributs::getAttr('work_type'))
                                         @if ($exper_attr)
                                             {{-- <option>Choose </option> --}}
@@ -493,14 +502,14 @@
                                 <div class="form-group">
                                     <label for="">Monthly Salary</label>
                                     <input type="text"
-                                      class="form-control" name="monthly_salary[]" id="monthly_salary" aria-describedby="helpId" placeholder="Salary(KSH)" required>
+                                      class="form-control" name="monthly_salary" id="monthly_salary" aria-describedby="helpId" placeholder="Salary(KSH)" required>
                                 </div>
                             </div>
 
                             <div class="col-md-2">
                                 <div class="form-group">
                                       <label for="">Country</label>
-                                      <select class="form-control" name="country[]" id="country" required>
+                                      <select class="form-control" name="country" id="country" required>
                                         @php($exper_attr = \App\Models\Admin\JobAttributs::getAttr('country'))
                                         @if ($exper_attr)
                                             {{-- <option>Choose </option> --}}
@@ -515,8 +524,9 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                       <label for="">Start Year</label>
-                                      <select class="form-control" name="start_year[]" id="start_year" required>
+                                      <select class="form-control" name="start_year" id="start_year" required>
                                         <?php $y= years_menu()?>
+                                        <option value=""></option>
                                         @foreach ($y as $item)
                                             <option value="{{$item}}">{{$item}}</option>
                                         @endforeach
@@ -526,8 +536,9 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="">Start Month</label>
-                                    <select class="form-control" name="start_month[]" id="start_month" required>
+                                    <select class="form-control" name="start_month" id="start_month" required>
                                         <?php $m=months_menu()?>
+                                        <option value=""></option>
                                         @foreach ($m as $item)
                                             <option value="{{$item}}">{{$item}}</option>
                                         @endforeach
@@ -537,7 +548,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                       <label for="">End Year</label>
-                                      <select class="form-control" name="end_year[]" id="end_year" required>
+                                      <select class="form-control" name="end_year" id="end_year" required>
                                         <?php $y= years_menu()?>
                                         <option value=""></option>
                                         @foreach ($y as $item)
@@ -549,8 +560,9 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="">End Month</label>
-                                    <select class="form-control" name="end_month[]" id="end_month">
+                                    <select class="form-control" name="end_month" id="end_month">
                                         <?php $m= months_menu()?>
+                                        <option value=""></option>
                                         @foreach ($m as $item)
                                             <option value="{{$item}}">{{$item}}</option>
                                         @endforeach
@@ -558,18 +570,18 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-10">
-                                <textarea name="job_responsibility[]" id="job_responsibility" cols="" rows="3" class="w-100" placeholder="Job Responsibility Summary"></textarea>
+                            <div class="col-md-12">
+                                <textarea name="extra_experience" id="job_responsibility" rows="10" cols="80" class="w-100" placeholder="Job Responsibility Summary"></textarea>
                             </div>
-                            <div class="col-md-2">
+                            {{-- <div class="col-md-2">
                                 <div class="input-group-btn h-100">
                                     <button class="btn btn-success exp-btn-add w-100 h-100" type="button"><i class="fa fa-plus"></i> Add</button>
                                 </div>
-                            </div>
+                            </div> --}}
 
                         </div>
 
-                        <div class="row exp-clone d-none">
+                        {{-- <div class="row exp-clone d-none">
                             <div class="col-md-3">
                                 <div class="form-group">
                                   <label for="">Employer</label>
@@ -592,7 +604,6 @@
                                       <select class="form-control" name="job_level[]" id="job_level" required>
                                         @php($exper_attr = \App\Models\Admin\JobAttributs::getAttr('job_level'))
                                         @if ($exper_attr)
-                                            {{-- <option>Choose </option> --}}
                                             @foreach ($exper_attr as $jb)
                                                 <option value="{{$jb['id']}}">{{$jb['name']}}</option>
                                             @endforeach
@@ -606,7 +617,6 @@
                                       <select class="form-control" name="work_type[]" id="work_type" required>
                                         @php($exper_attr = \App\Models\Admin\JobAttributs::getAttr('work_type'))
                                         @if ($exper_attr)
-                                            {{-- <option>Choose </option> --}}
                                             @foreach ($exper_attr as $jb)
                                                 <option value="{{$jb['id']}}">{{$jb['name']}}</option>
                                             @endforeach
@@ -627,7 +637,6 @@
                                       <select class="form-control" name="country[]" id="country" required>
                                         @php($exper_attr = \App\Models\Admin\JobAttributs::getAttr('country'))
                                         @if ($exper_attr)
-                                            {{-- <option>Choose </option> --}}
                                             @foreach ($exper_attr as $jb)
                                                 <option value="{{$jb['id']}}">{{$jb['name']}}</option>
                                             @endforeach
@@ -690,7 +699,7 @@
                                 </div>
                             </div>
 
-                        </div>
+                        </div> --}}
 
 
                     </div>
@@ -703,7 +712,8 @@
                         <div class="row skill-increment">
 
                             <div class="col-md-8">
-                                <textarea name="nameSkill[]" id="nameSkill" cols="" rows="3" class="w-100 rounded" placeholder="Job Skill(Max character 240)" maxlength="240"></textarea>
+                                <input type="text" name="nameSkill[]" id="nameSkill"  class="w-100 h-100 rounded" placeholder="Job Skill(Max character 240)" maxlength="240">
+                                {{-- <textarea name="nameSkill[]" id="nameSkill" cols="" rows="3" class="w-100 rounded" placeholder="Job Skill(Max character 240)" maxlength="240"></textarea> --}}
                             </div>
                             <div class="col-md-4">
                                 <div class="input-group-btn h-100">
@@ -716,7 +726,8 @@
                         <div class="row skill-clone d-none">
 
                             <div class="col-md-8">
-                                <textarea name="nameSkill[]" id="nameSkill" cols="" rows="3" class="w-100 rounded" placeholder="Job Skill(Max character 240)" maxlength="240" ></textarea>
+                                <input type="text" name="nameSkill[]" id="nameSkill"  class="w-100 h-100 rounded" placeholder="Job Skill(Max character 240)" maxlength="240">
+                                {{-- <textarea name="nameSkill[]" id="nameSkill" cols="" rows="3" class="w-100 rounded" placeholder="Job Skill(Max character 240)" maxlength="240" ></textarea> --}}
                             </div>
 
                             <div class="col-md-4">
@@ -749,7 +760,14 @@
 @endsection
 
 @section('jsblock')
+<script src="//cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+
 <script>
+    // Replace the <textarea id="editor1"> with a CKEditor 4
+   // instance, using default configuration.
+
+
+
     $("#prof-steps").steps({
         headerTag: "h3",
         bodyTag: "section",
@@ -906,6 +924,10 @@
         $(this).parents(".visible-skill").remove();
         vounter4--;
     });
+
+    CKEDITOR.replace( 'job_responsibility' );
+    CKEDITOR.replace( 'additional_highschool' );
+    CKEDITOR.replace( 'additional_college' );
 
 </script>
 @endsection

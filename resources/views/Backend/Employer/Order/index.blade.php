@@ -38,6 +38,7 @@
                             <form accept-charset="utf-8" action="{{ route('add.cart',7) }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="package" value="{{$token['package'] }}">
+                                <input type="hidden" name="prodid" value="{{$token['id'] }}">
                                 <input type="hidden" name="days" value="{{$token['days']}}">
                                 <input type="hidden" name="product_name" value="{{$token['product_name']}}">
                                 <input type="hidden" name="price" value="{{$token['price']}}">
