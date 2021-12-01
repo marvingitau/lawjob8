@@ -17,9 +17,11 @@ class AppliedJobsController extends Controller
     public function index()
     {
         $uid = auth()->user()->id;
+        //job posted
         $jobIDs = JobPostings::where('user_id',$uid)->pluck('id')->toArray();
-
+        //lookn users who have applied the job
         $AppUserID = DB::table('applieds')->whereIn('job_id',$jobIDs)->get()->toArray();
+
         return view('Backend.Employer.application_list',compact('AppUserID'));
     }
 
