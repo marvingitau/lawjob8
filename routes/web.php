@@ -153,6 +153,7 @@ Route::group(['prefix'=>'employer'],function(){
         Route::get('/Job/Create', [JobPostingsController::class,'create'])->name('job.create');
         Route::post('/Job/Post', [JobPostingsController::class,'store'])->name('job.post');
         Route::get('/Job/List', [JobPostingsController::class,'index'])->name('job.list');
+        Route::get('/Job/Delete/{id}', [JobPostingsController::class,'destroy'])->name('job.delete');
         Route::get('/Settings', [SettingsController::class,'index'])->name('settings');
         Route::get('/Applications', [AppliedJobsController::class,'index'])->name('job.application');
         Route::get('/Application/View/{id}', [AppliedJobsController::class,'viewCandidate'])->name('application.view.candidate');

@@ -18,6 +18,7 @@
                 <th>City</th>
                 <th>Expiry date</th>
                 <th>Salary</th>
+                <th>Salary</th>
             </tr>
         </thead>
         <tfoot>
@@ -26,6 +27,7 @@
                 <th>Type</th>
                 <th>City</th>
                 <th>Expiry date</th>
+                <th>Salary</th>
                 <th>Salary</th>
             </tr>
         </tfoot>
@@ -38,7 +40,7 @@
                     <td>{{ \App\Models\Admin\JobAttributs::where('id',$job->city)->first()->name }}</td>
                     <td>{{$job->expiry_date }}</td>
                     <td>{{ number_format($job->monthly_salary, 2, '.', ',') }}</td>
-
+                    <td><a name="" id="" class="btn btn-danger" href="{{route('job.delete',$job->id)}}" role="button" onclick="return confirm('Are you sure?')" >Delete</a> </td>
                 </tr>
                 @endforeach
             @else

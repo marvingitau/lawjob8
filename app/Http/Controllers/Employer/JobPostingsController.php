@@ -143,8 +143,9 @@ class JobPostingsController extends Controller
      * @param  \App\Model\EmployerFolder\JobPostings  $jobPostings
      * @return \Illuminate\Http\Response
      */
-    public function destroy(JobPostings $jobPostings)
+    public function destroy(JobPostings $jobPostings,$id)
     {
-        //
+        $candIDs = JobPostings::where('id',$id)->delete();
+        return back();
     }
 }
