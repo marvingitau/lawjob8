@@ -1,32 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Candidate;
+namespace App\Http\Controllers;
 
+use App\Models\VerifyUser;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 
-class CandidateDashboardController extends Controller
+class VerifyUserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-        public function index()
+    public function index()
     {
-        $uid = auth()->user()->id;
-        $user_profile_exists=DB::table('about_mes')->where('user_id',auth()->user()->id)->count();
-        $appliedAmount = DB::table('applieds')->where('user_id',$uid)->count();
-        // $user_profile_exists=DB::table('about_mes')->where('user_id',auth()->user()->id)->count();
-        if($user_profile_exists>0){
-            return view('Backend.Candidate.index',compact('user_profile_exists','appliedAmount'));
-        }
-        else{
-            return redirect('/candidate/Profile/Create');
-        }
-
-
+        //
     }
 
     /**
@@ -53,10 +41,10 @@ class CandidateDashboardController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\VerifyUser  $verifyUser
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(VerifyUser $verifyUser)
     {
         //
     }
@@ -64,10 +52,10 @@ class CandidateDashboardController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\VerifyUser  $verifyUser
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(VerifyUser $verifyUser)
     {
         //
     }
@@ -76,10 +64,10 @@ class CandidateDashboardController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\VerifyUser  $verifyUser
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, VerifyUser $verifyUser)
     {
         //
     }
@@ -87,10 +75,10 @@ class CandidateDashboardController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\VerifyUser  $verifyUser
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(VerifyUser $verifyUser)
     {
         //
     }

@@ -118,9 +118,8 @@
             <tbody>
                 @if($allTokens)
                     @foreach ($allTokens as $allToken)
-                    {{-- {{ dump($allToken)}} --}}
                     <tr>
-                        <td><?php echo !is_null(App\Models\Admin\JobAttributs::getAttr('package')->where('id',$allToken->package))?App\Models\Admin\JobAttributs::getAttr('package')->where('id',$allToken->package)[0]->name:''?></td>
+                        <td><?php echo !is_null(App\Models\Admin\JobAttributs::where('id',$allToken->package))?App\Models\Admin\JobAttributs::where('id',$allToken->package)->select('name')->first()->name:''?></td>
                         <td>{{is_null($allToken['days'])?'':$allToken['days'] }}</td>
                         <td><?php echo is_null($allToken['product_name'])?'':$allToken['product_name']?></td>
                         <td>{{is_null($allToken['price'])?'':$allToken['price']}}</td>

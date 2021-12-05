@@ -62,4 +62,16 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\UserData');
     }
+
+
+    public function verifyUser()
+    {
+        return $this->hasOne('App\Models\VerifyUser');
+    }
+
+     public function passwordReset()
+    {
+        return $this->hasOne('App\Models\VerifyUser');
+    }
+
 }

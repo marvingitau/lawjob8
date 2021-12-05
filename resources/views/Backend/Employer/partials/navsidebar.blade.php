@@ -27,6 +27,10 @@
         <li>
             <a href="{{ route('job.application') }}"><i class="fas fa-list"></i> Application List</a>
         </li>
+        <li>
+            <a href="{{ route('profile.create') }}"><i class="fas fa-user"></i> Profile</a>
+        </li>
+
         {{-- <li>
             <a href="#eployers" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle no-caret-down"><i class="fas fa-history"></i> Order History</a>
             <ul class="collapse list-unstyled" id="eployers">

@@ -1,5 +1,5 @@
 @extends('Backend.Admin.layouts.auth')
-@section('title',"Employers")
+@section('title',"Candidates")
 
 @section('content')
     <div class="container">
@@ -40,7 +40,8 @@
                         <td>{{$candidate->dob }}</td>
 
                         <td>
-                            <a name="delete" id="" class="btn btn-danger" href="{{ route('delete.candidate',$candidate->user_id)}}" role="button">Delete <i class="fa fa-trash" aria-hidden="true"></i></a>
+                            <a style="padding: 0.4rem;" name="delete" id="" class="btn btn-danger" href="{{ route('delete.candidate',$candidate->user_id)}}" role="button" onclick="return confirm('Are you sure?')" >Delete <i class="fa fa-trash" aria-hidden="true"></i></a>
+                            <a style="padding: 0.4rem;" name="delete" id="" class="btn btn-primary" href="{{ route('view.candidate',$candidate->user_id)}}" role="button" >View <i class="fa fa-eye" aria-hidden="true"></i></a>
                         </td>
                     </tr>
                     @endforeach

@@ -128,6 +128,22 @@
                                             <label><strong>Name</strong> </label>
                                             <input class="form-control form-control-lg col-md-12" name="name">
                                         </div>
+                                        @if ($pt['label']=="Job Category")
+                                            <div class="form-row">
+                                            <label for=""> <strong>Choose Icon</strong> </label>
+                                            <select class="form-control form-control-lg col-md-12" name="icon" id="country">
+
+                                                     <option value="conversation">conversation</option>
+                                                     <option value="money">money</option>
+                                                     <option value="mortarboard">mortarboard</option>
+                                                     <option value="worker">worker</option>
+                                                     <option value="businessman">businessman</option>
+                                                     <option value="coding">coding</option>
+                                                     <option value="balance">balance</option>
+
+                                            </select>
+                                            </div>
+                                        @endif
                                         <div class="form-row">
                                             <label><strong>Status</strong> </label>
                                             <input data-toggle="toggle" checked data-height="40px" data-on="Active" data-off="Inactive" data-onstyle="success" data-offstyle="danger" data-width="100%" type="checkbox" name="status">

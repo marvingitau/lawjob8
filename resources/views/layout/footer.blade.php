@@ -7,24 +7,25 @@ Footer-->
           <div class="footer-link">
             <h5 class="text-dark mb-4">Page Link</h5>
             <ul class="list-unstyled">
+                <li><a href="{{ url('/')}}">Home</a></li>
                 <li><a href="{{ url('about')}}">About Us</a></li>
+              <li><a href="{{ url('joblist')}}">Job List</a></li>
               <li><a href="{{ url('contacts')}}">Contact Us</a></li>
 
             </ul>
           </div>
         </div>
-        {{-- <div class="col-lg-3 col-md-6 mt-4 mt-md-0">
+        <div class="col-lg-3 col-md-6 mt-4 mt-md-0">
           <div class="footer-link">
             <h5 class="text-dark mb-4">For Employers</h5>
             <ul class="list-unstyled">
-              <li><a href="#">Browse Candidates</a></li>
-              <li><a href="#">Browse Categories</a></li>
-              <li><a href="#">Employer Dashboard</a></li>
-              <li><a href="#">Add Job</a></li>
-              <li><a href="#">Job Packages</a></li>
+              <li><a href="{{url('employer')}}">Dashboard</a></li>
+              <li><a href="{{url('employer/Profile/View')}}">Profile</a></li>
+              <li><a href="{{url('employer/Job/Create')}}">Add Job</a></li>
+              <li><a href="{{url('employer/Order/Forms')}}">Job Packages</a></li>
             </ul>
           </div>
-        </div> --}}
+        </div>
         {{-- <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
           <div class="footer-link">
             <h5 class="text-dark mb-4">Partner Sites</h5>
@@ -38,7 +39,7 @@ Footer-->
             </ul>
           </div>
         </div> --}}
-        <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
+        <div class="col-lg-3 col-md-6 mt-4 mt-lg-0" style="margin-left:auto">
           <div class="footer-contact-info bg-holder" style="background-image: url(images/google-map.png);">
             <h5 class="text-dark mb-4">Contact Us</h5>
             <ul class="list-unstyled mb-0">

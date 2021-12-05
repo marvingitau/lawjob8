@@ -3,7 +3,13 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+
         <div class="col-md-12">
+            @if(Session::has('message'))
+            <div class="alert alert-success text-center" role="alert">
+                <strong>Alert! &nbsp;</strong>{{Session::get('message')}}
+            </div>
+            @endif
             <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
 

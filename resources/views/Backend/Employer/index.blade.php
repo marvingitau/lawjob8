@@ -21,7 +21,7 @@
                             </div>
                         </div>
                         <div class="col-sm-8">
-                            <a href="{{route('job.application')}}">
+                            <a href="{{url('/')}}">
                             <div class="detail">
                                 <p class="detail-subtitle">Go Home</p>
                                 <span class="number">Home Page</span>
@@ -48,10 +48,12 @@
                             </div>
                         </div>
                         <div class="col-sm-8">
+                            <a href="{{route('job.list')}}">
                             <div class="detail">
                                 <p class="detail-subtitle">Posted Job</p>
                                 <span class="number">{{ $jCount }} </span>
                             </div>
+                        </a>
                         </div>
                     </div>
                     <div class="footer">
@@ -117,6 +119,64 @@
                 </div>
             </div>
         </div>
+        <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
+            <div class="card">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="icon-big text-center">
+                                <i class="violet fas fa-user-cog"></i>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <a href="{{route('settings')}}">
+                                <div class="detail">
+                                    <p class="detail-subtitle">Settings</p>
+                                    <span class="number">Account</span>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <hr />
+                        <div class="stats">
+                            <i class="fas fa-envelope-open-text"></i> For this system
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
+            <div class="card">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="icon-big text-center">
+                                <i class="violet fas fa-user-plus"></i>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <a href="{{route('profile.create')}}">
+                                <div class="detail">
+                                    <p class="detail-subtitle">Profile</p>
+                                    <span class="number">Link</span>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <hr />
+                        <div class="stats">
+                            <i class="fas fa-envelope-open-text"></i> For this system
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 </div>

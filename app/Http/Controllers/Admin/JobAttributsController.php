@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Admin\JobAttributs;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 // use Image;
 
@@ -76,6 +78,12 @@ class JobAttributsController extends Controller
         $attribute->type = $type;
         $attribute->status = $request->status?1:0;
         $attribute->save();
+
+        // Job category icon
+        if($type=='job_category'){
+        DB::table('icons')->insert(['job_cat'=>$attribute->id,'icon'=>$request->icon,'created_at'=>Carbon::now()]);
+        }
+
         return back()->with('success','Save successful');
     }
 
@@ -151,6 +159,9 @@ class JobAttributsController extends Controller
                 return back()->with('success',"Please don't edit/Delete this page. ");
             }
              $attribute->forceDelete();
+             if($type=='job_category'){
+                DB::table('icons')->where('job_cat',$id)->delete();
+            }
              return back()->with('success','Delete successful');
          }
 

@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Employer;
 
 use session;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\Employer\Profile;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -50,6 +51,8 @@ class ProfileController extends Controller
             'postal_address'=>'',
             'company_description'=>'',
             // 'is_active'=>1,
+            'professional_group'=>'',
+            'year_in_service'=>''
             ]
         );
 
@@ -58,13 +61,12 @@ class ProfileController extends Controller
 
 
         } catch (\Throwable $th) {
-            // QueryException
-            //throw $th;
-            session()->put('success','You profile already exist.');
-            return back();
+
+            Profile::where('user_id',auth()->user()->id)->update($profile);
+            return back()->with('success','You profile already exist, Updated.');
         }
-        session()->put('success','Profile created successfully.');
-        return back();
+        // session()->put('success','Profile created successfully.');
+        return back()->with('success','Profile created successfully.');
 
     }
 
@@ -111,5 +113,39 @@ class ProfileController extends Controller
     public function destroy(Profile $profile)
     {
         //
+    }
+
+    public function createProfile(Request $request)
+    {
+        $profile = auth()->user()->profile;
+        $hrData = auth()->user()->userData;
+
+        return view('Backend.Employer.profile_create',compact('profile','hrData'));
+    }
+
+    public function changePassword(Request $request)
+    {
+        $usr = auth()->user();
+        $data=$request->validate(
+            [
+                'old'=>'required',
+                'password'=>'required',
+                'password_confirm'=>'required'
+            ]
+            );
+
+            if($request['password_confirm'] != $request['password']){
+                return back()->with('message','Password missmatch');
+            }
+
+            if (Hash::check($data['old'], $usr->password)) {
+                $usr->fill([
+                 'password' => Hash::make($data['password'])
+                 ])->save();
+                return back()->with('message','Password changed');
+            }
+
+            return back()->with('message','Bad Old Password');
+
     }
 }

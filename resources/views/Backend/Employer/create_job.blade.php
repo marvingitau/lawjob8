@@ -100,7 +100,7 @@
                 </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-6 d-none">
                 <div class="form-group">
                 <label for="">Choose Icon</label>
                 <select class="form-control rounded-0" name="icon" id="country">

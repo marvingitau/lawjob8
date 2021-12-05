@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\UserDataController;
 use App\Http\Controllers\JobListingController;
@@ -32,6 +33,8 @@ use App\Http\Controllers\Employer\EmployerDashboardController;
 Route::get('/', [PublicController::class, 'index'])->name('welcome');
 Route::get('/contacts', [PublicController::class, 'contact'])->name('contact');
 Route::get('/about', [PublicController::class, 'about'])->name('about');
+Route::get('/user/verify/{token}', [PublicController::class, 'verifyUser']);
+
 
 
 Route::get('joblist', [JobListingController::class, 'index'])->name('listing');
@@ -76,9 +79,13 @@ Route::group(['middleware'=>'role:admin','prefix'=>'admin'],function () {
         Route::get('/create/employer',[EmployerController::class,'create'])->name('create.employer');
         Route::post('/store/employer',[EmployerController::class,'store'])->name('store.employer');
         Route::get('/delete/employer/{id}/',[EmployerController::class,'destroy'])->name('delete.employer');
+        Route::get('/view/employer/{id}/',[EmployerController::class,'show'])->name('view.employer');
+        Route::get('/Approve/employer/{id}/',[EmployerController::class,'approve'])->name('approve.employer');
+        Route::get('/Disable/employer/{id}/',[EmployerController::class,'disable'])->name('disable.employer');
         // Candidates
         Route::get('/candidates',[EmployerController::class,'indexCanditate'])->name('view.candidates');
         Route::get('/delete/candidates/{id}/',[EmployerController::class,'destroyCandidate'])->name('delete.candidate');
+        Route::get('/view/candidate/{id}/',[EmployerController::class,'showCandidate'])->name('view.candidate');
         // Tokens
         Route::get('/tokens',[TokensController::class,'index'])->name('show.tokens');
         Route::post('/tokens/create',[TokensController::class,'store'])->name('create.token');
@@ -139,7 +146,9 @@ Route::group(['prefix'=>'employer'],function(){
         Route::post('/Order/Checkout', [OrderController::class,'create'])->name('checkout.cart');
         Route::get('/Order/Approved', [OrderController::class,'approved'])->name('checkout.approved');
         Route::get('/Profile/View', [ProfileController::class,'index'])->name('profile.view');
+        Route::get('/Profile/Create', [ProfileController::class,'createProfile'])->name('profile.create');
         Route::post('/Profile/Store', [ProfileController::class,'store'])->name('profile.store');
+        Route::post('/Password/Change', [ProfileController::class,'changePassword'])->name('change.password');
         Route::post('/HR/Store', [UserDataController::class,'store'])->name('hr.store');
         Route::get('/Job/Create', [JobPostingsController::class,'create'])->name('job.create');
         Route::post('/Job/Post', [JobPostingsController::class,'store'])->name('job.post');
@@ -147,6 +156,7 @@ Route::group(['prefix'=>'employer'],function(){
         Route::get('/Settings', [SettingsController::class,'index'])->name('settings');
         Route::get('/Applications', [AppliedJobsController::class,'index'])->name('job.application');
         Route::get('/Application/View/{id}', [AppliedJobsController::class,'viewCandidate'])->name('application.view.candidate');
+        Route::get('/Application/CSV', [AppliedJobsController::class,'downloadtargetApplicantCSV'])->name('application.csv');
 
 
 

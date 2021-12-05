@@ -29,6 +29,7 @@ class EmployerController extends Controller
         return view('Backend.Admin.Candidate.index',compact('candidates'));
     }
 
+
     /**
      * Show the form for creating a new resource.
      *
@@ -58,7 +59,44 @@ class EmployerController extends Controller
      */
     public function show($id)
     {
-        //
+        $profile = User::where('id',$id)->first()->profile;
+        $hrData = User::where('id',$id)->first()->userData;
+        $approved=User::where('id',$id)->first()->approved;
+
+
+        return view('Backend.Admin.Employer.profile_view',compact('profile','hrData','approved'));
+    }
+
+    public function showCandidate($id)
+    {
+        $uid =$id;
+
+        $aboutMe = DB::table('about_mes')->where('user_id',$uid)->first();
+        $skills= DB::table('job_skills')->where('user_id',$uid)->get();
+        $experiences = DB::table('work_experiences')->where('user_id',$uid)->first();
+        $education = DB::table('education')->where('user_id',$uid)->first();
+        $sec_education = DB::table('sec_education')->where('user_id',$uid)->first();
+        $resumes = DB::table('resumes')->where('user_id',$uid)->get();
+        if(is_null($aboutMe)||is_null($skills)||is_null($experiences)||is_null($education)||is_null($sec_education)||is_null($sec_education))
+            return back()->with('message','Error with Profile');
+        return view('Backend.Admin.Candidate.candidate_profile',compact(['aboutMe','skills','experiences','education','sec_education','resumes']));
+    }
+
+    public function approve($id)
+    {
+        $usr=User::where('id',$id)->first();
+        $usr->approved=1;
+        $usr->save();
+        return back()->with('message','User Enabled');
+    }
+
+
+    public function disable($id)
+    {
+        $usr=User::where('id',$id)->first();
+        $usr->approved=0;
+        $usr->save();
+        return back()->with('message','User Disabled');
     }
 
     /**
@@ -100,4 +138,6 @@ class EmployerController extends Controller
         $candIDs = User::where('id',$id)->delete();
         return back();
     }
+
+
 }

@@ -25,6 +25,43 @@ class AppliedJobsController extends Controller
         return view('Backend.Employer.application_list',compact('AppUserID'));
     }
 
+    public function downloadtargetApplicantCSV(Request $request){
+        $uid = auth()->user()->id;
+        //job posted
+        $jobIDs = JobPostings::where('user_id',$uid)->pluck('id')->toArray();
+        //lookn users who have applied the job
+        $AppUserID = DB::table('applieds')->whereIn('job_id',$jobIDs)->get()->toArray();
+
+        $pathcsv = base_path('../assets/backend/image/candidate/csv/');
+
+        $headers = [
+        "Content-type"        => "text/csv",
+        "Content-Disposition" => "attachment; filename=".auth()->user()->name."_data.csv", // <- name of file
+        "Pragma"              => "no-cache",
+        "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+        "Expires"             => "0",
+        ];
+        $columns  = ['First Name', 'Last Name', 'DOB','Phone','Gender','Job','Previous Job','Employer','Start Year','End Year',
+        ];
+        $callback = function () use ($AppUserID, $columns) {
+            $file = fopen('php://output', 'w'); //<-here. name of file is written in headers
+            fputcsv($file, $columns);
+            foreach ($AppUserID as $user) {
+                $data= DB::table('applieds')->join('job_postings','applieds.job_id','=','job_postings.id')->join('about_mes','applieds.user_id','=','about_mes.user_id')->join('work_experiences','applieds.user_id','=','work_experiences.user_id')->where('applieds.job_id',$user->job_id)->first();
+                fputcsv($file,
+                [
+                    $data->fname,$data->lname,$data->dob,$data->phone,$data->gender,$data->title,$data->job_title,$data->employer,
+                    $data->start_year,$data->end_year
+                ]);
+            }
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
+
+
     public function viewCandidate(Request $request,$id)
     {
         $uid =$id;

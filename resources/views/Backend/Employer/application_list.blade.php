@@ -9,6 +9,7 @@
         <div class="col-md-12 page-header">
             <div class="page-pretitle">Job Applicants</div>
         </div>
+        <a name="" id="" class="btn btn-primary" href="{{route('application.csv')}}" role="button ml-3 my-1">Download CSV</a>
     </div>
     <table class="table table-bordered" id="jobList" width="100%" cellspacing="0">
         <thead>
@@ -38,9 +39,9 @@
             @if($AppUserID)
                 @foreach ($AppUserID as $user)
                 {{-- DB::table('about_mes')->where('user_id',$user->user_id)->get() --}}
-                @php( $data= DB::table('applieds')->join('job_postings','applieds.job_id','=','job_postings.id')->join('about_mes','applieds.user_id','=','about_mes.user_id')->where('applieds.job_id',$user->job_id)->first())
+                @php( $data= DB::table('applieds')->join('job_postings','applieds.job_id','=','job_postings.id')->join('about_mes','applieds.user_id','=','about_mes.user_id')->join('work_experiences','applieds.user_id','=','work_experiences.user_id')->where('applieds.job_id',$user->job_id)->first())
 
-
+            {{-- {{dd($data)}} --}}
                 @if ($data)
                 {{-- @foreach ($userData as $data) --}}
                 <tr>

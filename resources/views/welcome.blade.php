@@ -115,7 +115,8 @@
                     @foreach ($jobCat as $item)
                         <?php
                         $jbCount=\App\Models\Employer\JobPostings::where('job_category',$item['id'])->count();
-                        $icon=\App\Models\Employer\JobPostings::where('job_category',$item['id'])->first()->icon;
+                        $icon=!is_null(\App\Models\Icons::where('job_cat',$item['id'])->first())?\App\Models\Icons::where('job_cat',$item['id'])->first()->icon:'balance'
+
                         ?>
                         {{-- <input type="hidden" name="job_category" value="{{$item['id']}}"> --}}
                         <a href="{{route('jobSearchCat',$item['id'])}}" class="category-item">
