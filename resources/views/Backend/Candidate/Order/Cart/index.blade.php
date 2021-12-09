@@ -36,7 +36,7 @@
                                             <th>Product Name</th>
                                             <th>Price</th>
                                             <th>Package</th>
-                                            <th>Quantity</th>
+                                            {{-- <th>Quantity</th> --}}
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -47,7 +47,7 @@
                                             <td>{{ $cart['name'] }}</td>
                                             <td>{{ number_format($cart['price']) }}</td>
                                             <td>{{ $cart['attributes']['package'] }}</td>
-                                            <td>
+                                            {{-- <td>
                                                  <div class="cart_quantity_button">
                                                     <a class="cart_quantity_up" href="{{url('/candidate/Cart/Update-quantity/'.$key.'/1')}}" style="font-size:1rem;"> + </a>
                                                     <input class="cart_quantity_input" type="text" name="quantity" value="{{$cart['quantity']}}"  disabled autocomplete="off" size="2">
@@ -55,7 +55,7 @@
                                                         <a class="cart_quantity_down" href="{{url('/candidate/Cart/Update-quantity/'.$key.'/-1')}}" style="font-size:1rem;"> - </a>
                                                     @endif
                                                 </div>
-                                            </td>
+                                            </td> --}}
                                             <td>
                                                  <a class="cart_quantity_delete" href="{{url('/candidate/Cart/Delete/'.$key)}}"><i class="fa fa-times text-danger"></i></a>
                                             </td>

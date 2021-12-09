@@ -49,11 +49,20 @@
                           </select>
                         </div>
 
-                        <div class="form-group my-1">
-                            <label for="dys">Days</label>
-                            <input type="number"
-                              class="form-control" name="days" id="dys" aria-describedby="helpId" placeholder="" min="1">
+                        {{-- <div class="form-group my-1">
+                            <label for="dys">Days</label> --}}
+                            <input type="hidden"
+                              class="form-control" name="days" id="dys" aria-describedby="helpId" placeholder="" min="1" value="30">
+                        {{-- </div> --}}
+                        <div class="form-group">
+                          <label for="">Quantity</label>
+                          <select class="form-control" name="quantity" id="">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="999999999">Unlimited</option>
+                          </select>
                         </div>
+
                         <div class="form-check my-3">
                             <label class="form-check-label">
                               <input type="checkbox" class="form-check-input" name="user" id="" value="candidate">

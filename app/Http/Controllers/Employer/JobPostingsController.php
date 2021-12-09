@@ -42,7 +42,7 @@ class JobPostingsController extends Controller
         // $jobAttribPackage = JobAttributs::getAttr('package');
         // dd($jobCategory);
 
-        $creditList = Order::where('user_id',$usr->id)->where('quantity','>',0)->where('order_verify','>',0)->get();
+        $creditList = Order::where('user_id',$usr->id)->where('quantity','>',0)->where('order_verify','>',0)->where('status','>',0)->get();
         // dd($creditList);
 
         return view('Backend.Employer.create_job',compact(['jobAttrib','jobAttribCountry','jobAttribCity','creditList','jobAttribSalary','jobCategory']));
@@ -71,8 +71,8 @@ class JobPostingsController extends Controller
         ]);
 
         $order_id  = $req['credit'];
-
-        $ord = Order::where('package',$order_id)->first();
+        // what if you buy two same package; add the verify and status
+        $ord = Order::where('package',$order_id)->where('order_verify','>',0)->where('status','>',0)->first();
         // $ord = Order::findOrFail($order_id);
         $decrease = $ord->increment('quantity','-1');
 

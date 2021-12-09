@@ -42,10 +42,10 @@
                                 <input type="hidden" name="days" value="{{$token['days']}}">
                                 <input type="hidden" name="product_name" value="{{$token['product_name']}}">
                                 <input type="hidden" name="price" value="{{$token['price']}}">
-                                <div class="form-group">
-                                    <label for="Amount">Amount</label>
-                                    <input type="number" name="quantity" placeholder="Token" class="form-control" min=1 required>
-                                </div>
+                                {{-- <div class="form-group">
+                                    <label for="Amount">Amount</label> --}}
+                                    <input type="hidden" name="quantity" placeholder="Token" class="form-control" min=1 required value="{{$token['quantity']}}">
+                                {{-- </div> --}}
                                 <div class="form-group">
                                     <input type="submit" class="btn btn-primary" value="Order">
                                 </div>

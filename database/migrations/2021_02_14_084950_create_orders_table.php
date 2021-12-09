@@ -22,6 +22,7 @@ class CreateOrdersTable extends Migration
             $table->integer('prodid')->nullable();
             $table->string('grand_total',100);
             $table->tinyInteger('order_verify')->default(0);
+            $table->tinyInteger('status')->default(0);
             $table->string('package')->nullable();
             // $table->unsignedInteger('package')->default(1);
             $table->timestamp('expiry_date')->nullable();

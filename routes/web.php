@@ -65,6 +65,13 @@ Route::post('email/resend', [App\Http\Controllers\Auth\VerificationController::c
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::group(['prefix' => '/payment'], function () {
+    //PESAPAL
+    // Route::get('/', [App\Http\Controllers\Employer\PaymentController::class,'payment']);
+    // Route::get('donepayment',[App\Http\Controllers\Employer\PaymentController::class,'paymentsuccess'])->name('paymentsuccess');
+    Route::get('paymentconfirmation', [App\Http\Controllers\Employer\PaymentController::class,'paymentconfirmation'])->name('payment.confirmation');
+});
+
 
 // Admin
 Route::group(['middleware'=>'role:admin','prefix'=>'admin'],function () {
@@ -124,7 +131,7 @@ Route::group(['prefix'=>'candidate'],function(){
             //PESAPAL
             Route::get('/', [App\Http\Controllers\Employer\PaymentController::class,'payment']);
             Route::get('donepayment',[App\Http\Controllers\Employer\PaymentController::class,'paymentsuccess'])->name('paymentsuccess');
-            Route::get('paymentconfirmation', [OrderController::class,'store'])->name('payment.confirmation');
+            // Route::get('paymentconfirmation', [OrderController::class,'store'])->name('payment.confirmation');
         });
 
     });
@@ -167,8 +174,14 @@ Route::group(['prefix'=>'employer'],function(){
         //PESAPAL
         Route::get('/', [App\Http\Controllers\Employer\PaymentController::class,'payment']);
         Route::get('donepayment',[App\Http\Controllers\Employer\PaymentController::class,'paymentsuccess'])->name('paymentsuccess');
-        Route::get('paymentconfirmation', [OrderController::class,'store'])->name('payment.confirmation');
+        // Route::get('paymentconfirmation', [OrderController::class,'store'])->name('payment.confirmation');
     });
 
 });
 
+Route::group(['prefix' => '/payment'], function () {
+    //PESAPAL
+    Route::get('/', [App\Http\Controllers\Employer\PaymentController::class,'payment']);
+    Route::get('donepayment',[App\Http\Controllers\Employer\PaymentController::class,'paymentsuccess'])->name('paymentsuccess');
+    Route::get('paymentconfirmation', [App\Http\Controllers\Employer\PaymentController::class,'paymentconfirmation'])->name('payment.confirmation');
+});

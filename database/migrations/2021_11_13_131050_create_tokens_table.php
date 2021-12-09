@@ -19,6 +19,7 @@ class CreateTokensTable extends Migration
             $table->string('days');
             $table->string('product_name');
             $table->float('price');
+            $table->integer('quantity')->default(5);
             $table->string('user')->default('employer');
             $table->timestamps();
         });

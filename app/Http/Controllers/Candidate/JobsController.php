@@ -76,7 +76,7 @@ class JobsController extends Controller
     {
         $uid = auth()->user()->id;
         $singleJob = JobPostings::findOrFail($id);
-        $creditList = Order::where('user_id',$uid)->where('quantity','>',0)->where('order_verify','>',0)->get();
+        $creditList = Order::where('user_id',$uid)->where('quantity','>',0)->where('order_verify','>',0)->where('status','>',0)->get();
         return view('Backend.Candidate.job_view',compact('singleJob','creditList'));
     }
 

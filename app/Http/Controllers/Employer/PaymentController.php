@@ -20,7 +20,7 @@ class PaymentController extends Controller
 
     public function payment(Request $request){//initiates payment
         $orderItems= compact($request->all());
-        $orderSumCost = Order::where('session_id',Session::get('emp_session_id'))->sum('grand_total');
+        $orderSumCost = Order::where('session_id',Session::get('emp_session_id'))->where('order_verify',0)->sum('grand_total');
         if($orderSumCost>1000){
             return back()->with('message','Exceeds 1000');
         }
@@ -28,7 +28,7 @@ class PaymentController extends Controller
 
         $RANDO = rand(100000000,999999999);
         //set all record with similar session with transactionid
-        Order::where('session_id',Session::get('emp_session_id'))->update(['transactionid'=>$RANDO]);
+        Order::where('session_id',Session::get('emp_session_id'))->where('order_verify',0)->update(['transactionid'=>$RANDO]);
 
         $payments = new Payment;
         $payments -> businessid = Auth::guard()->id(); //Business ID
@@ -103,13 +103,13 @@ class PaymentController extends Controller
 
 
         //go back home
-        $payments=Payment::where('businessid',auth()->user()->id)->orderBy('created_at', 'desc')->first();
         if(auth()->user()->role == 'employer'){
         return redirect('employer')->with('ok', 'You have successfully made payment, please wait while we update your payment records');
         }else{
         return redirect('candidate')->with('ok', 'You have successfully made payment, please wait while we update your payment records');
         }
-        // return view('Backend.Employer.Order.PaymentConfirmation', compact('payments'));
+        $paymentss=Payment::where('businessid',auth()->user()->id)->orderBy('created_at', 'desc')->first();
+        return view('Backend.Employer.Order.PaymentConfirmation', compact('paymentss'));
     }
     //This method just tells u that there is a change in pesapal for your transaction..
     //u need to now query status..retrieve the change...CANCELLED? CONFIRMED?
@@ -125,11 +125,23 @@ class PaymentController extends Controller
     }
     //Confirm status of transaction and update the DB
     public function checkpaymentstatus($trackingid,$merchant_reference,$pesapal_notification_type){
+
         $status=Pesapal::getMerchantStatus($merchant_reference);
         $payments = Payment::where('trackingid',$trackingid)->first();
         $payments -> status = $status;
         $payments -> payment_method = "PESAPAL";//use the actual method though...
         $payments -> save();
+
+        if($status == "COMPLETED") {
+        $oder = Order::where('trackingid',$trackingid)->first();
+        $oder->status = 1;
+        $oder->save();
+        }else{
+            $oder = Order::where('trackingid',$trackingid)->first();
+            $oder->status= 0;
+            $oder->save();
+        }
+
         return true;
     }
 }

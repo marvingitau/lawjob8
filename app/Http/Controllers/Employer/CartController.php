@@ -38,7 +38,6 @@ class CartController extends Controller
         // transformations
         $cart_data = $cartCollection->toArray();
 
-        // dd($cart_data);
 
         // $session_id=Session::get('session_id');
         // $cart_data = Cart::where('session_id',$session_id)->select(['product_name','price','quantity','package','duration','session_id'])->get();
@@ -46,9 +45,10 @@ class CartController extends Controller
         $total_price=0;
         foreach ($cart_data as $key=>$cart_datum){
             $x =$cart_datum['price'];
-            $y = $cart_datum['quantity'];
-            $total_price += ($x* $y);
+            // $y = $cart_datum['quantity'];
+            $total_price += $x;
         }
+
         $plus_vat = $total_price + $total_price*(env('VAT')/100);
         $user_profile_exists=DB::table('about_mes')->where('user_id',auth()->user()->id)->count();
         if(auth()->user()->role == 'employer'){

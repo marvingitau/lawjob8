@@ -67,7 +67,7 @@ class OrderController extends Controller{
         //*
 
         $user_data = auth()->user();
-        // dd($user_data);
+
         $orderItems= ["data"=>$request->all()];
         // $data= Cart::where('session_id',Session::get('session_id'))->get();
 
@@ -75,13 +75,12 @@ class OrderController extends Controller{
         $userId = auth()->user()->id; // or any string represents user identifier
         $data=\Cart::getContent()->toArray();
 
-        // dd($data);
         $now = Carbon::now();
         $trackingid =date('YmdHis');
 
         foreach ($data as $key => $value) {
             //What is the use of checking for duplication?
-            $order = Order::where('package', $value['attributes']['package'])->where('session_id',Session::get('emp_session_id'))->where('user_id',$userId)->where('quantity',$value['quantity'])->first();
+            $order = Order::where('package', $value['attributes']['package'])->where('session_id',Session::get('emp_session_id'))->where('user_id',$userId)->where('quantity',$value['quantity'])->where('status',0)->where('order_verify',0)->first();
             if ($order !== null) {
 
                 $order->update(
@@ -91,7 +90,7 @@ class OrderController extends Controller{
                         'payment_method'=>"NA",
                         'quantity'=>$value['quantity'],
                         'prodid'=>$value['attributes']['prodid'],
-                        'grand_total'=>(($value['quantity']*$value['price'])*(env('VAT')/100)+($value['quantity']*$value['price']) ),
+                        'grand_total'=>(($value['price'])*(env('VAT')/100)+($value['price']) ),
                         'order_verify'=>0,
                         'trackingid'=>$trackingid,
                         'expiry_date'=>Carbon::now()->addDays($value['attributes']['duration'])->format('Y-m-d H:i:s'),
@@ -109,7 +108,7 @@ class OrderController extends Controller{
                     'payment_method'=>"NA",
                     'quantity'=>$value['quantity'],
                     'prodid'=>$value['attributes']['prodid'],
-                    'grand_total'=>(($value['quantity']*$value['price'])*(env('VAT')/100)+($value['quantity']*$value['price']) ),
+                    'grand_total'=>(($value['price'])*(env('VAT')/100)+($value['price']) ),
                     'order_verify'=>0,
                     'trackingid'=>$trackingid,
                     'expiry_date'=>Carbon::now()->addDays($value['attributes']['duration'])->format('Y-m-d H:i:s'),
@@ -150,10 +149,11 @@ class OrderController extends Controller{
         // on approving payment you store the product
             if($status){
                     $data_arr = $request->all();
+                    // MOVE TO TRAIT
                     $oder = Order::where('trackingid',$trackingid)->first();
-                    $oder->order_verify = 1;
+                    $oder->status = 1; //payment attempt done
                     $oder->save();
-                    // dd('then');
+
                     if(auth()->user()->role == 'employer'){
                     return redirect('employer');
                     }else{

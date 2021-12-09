@@ -25,6 +25,12 @@ trait Payments{
         $payments -> status = $status;
         $payments -> payment_method = "MPESA";//use the actual method though...
         $payments -> save();
+
+        if($status == "completed"){
+            $oder = Order::where('trackingid',$trackingid)->first();
+            $oder->status = 1; //payment attempt done
+            $oder->save();
+        }
         return true;
     }
 
