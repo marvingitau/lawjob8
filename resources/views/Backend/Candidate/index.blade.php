@@ -447,6 +447,153 @@
                 </div>
             </div>
 
+            <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
+                <div class="card">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="icon-big text-center">
+                                    <i class="violet fas fa-user-cog"></i>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <a href="{{route('candidate.settings')}}">
+                                    <div class="detail">
+                                        <p class="detail-subtitle">Settings</p>
+                                        <span class="number">Account</span>
+                                    </div>
+                                </a>
+
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <hr />
+                            <div class="stats">
+                                <i class="fas fa-envelope-open-text"></i> For this system
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
+                <div class="card">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="icon-big text-center">
+                                    <i class="violet fas fa-user-plus"></i>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <a href="{{route('candidate.profile.create')}}">
+                                    <div class="detail">
+                                        <p class="detail-subtitle">Profile</p>
+                                        <span class="number">Create</span>
+                                    </div>
+                                </a>
+
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <hr />
+                            <div class="stats">
+                                <i class="fas fa-envelope-open-text"></i> For this system
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
+                <div class="card">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="icon-big text-center">
+                                    <i class="violet fas fa-user-check"></i>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <a href="{{route('candidate.profile')}}">
+                                    <div class="detail">
+                                        <p class="detail-subtitle">Profile</p>
+                                        <span class="number">Update</span>
+                                    </div>
+                                </a>
+
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <hr />
+                            <div class="stats">
+                                <i class="fas fa-envelope-open-text"></i> For this system
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
+                <div class="card">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="icon-big text-center">
+                                    <i class="orange fas fa-mail-bulk"></i>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <a href="{{route('backend.job.list')}}">
+                                    <div class="detail">
+                                        <p class="detail-subtitle">Apply</p>
+                                        <span class="number">Job</span>
+                                    </div>
+                                </a>
+
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <hr />
+                            <div class="stats">
+                                <i class="fas fa-envelope-open-text"></i> For this system
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
+                <div class="card">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="icon-big text-center">
+                                    <i class="teal fas fa-credit-card"></i>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <a href="{{route('candidate.order.forms')}}">
+                                    <div class="detail">
+                                        <p class="detail-subtitle">Create</p>
+                                        <span class="number">Credit</span>
+                                    </div>
+                                </a>
+
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <hr />
+                            <div class="stats">
+                                <i class="fas fa-envelope-open-text"></i> For this system
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
         </div>
     </div>
     @endsection

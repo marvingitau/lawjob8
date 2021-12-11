@@ -28,7 +28,7 @@
                         <ul class="nav-list">
                             <li><a href="{{ route('candidate.profile') }}" class="dropdown-item"><i class="fas fa-address-card"></i> View Profile</a></li>
                             {{-- <li><a href="" class="dropdown-item"><i class="fas fa-envelope"></i> Messages</a></li> --}}
-                            {{-- <li><a href="{{ route('settings') }}" class="dropdown-item"><i class="fas fa-cog"></i> Settings</a></li> --}}
+                            <li><a href="{{ route('candidate.settings') }}" class="dropdown-item"><i class="fas fa-cog"></i> Settings</a></li>
                             <div class="dropdown-divider"></div>
                             <li><a href="{{ route('logout') }}"  class="dropdown-item" onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i> {{ __('Logout') }} </a>

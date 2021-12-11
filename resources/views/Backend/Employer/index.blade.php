@@ -11,6 +11,10 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-12">
+            <div id="empStat" style="height: 300px;"></div>
+        </div>
+
         <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
             <div class="card">
                 <div class="content">
@@ -181,6 +185,43 @@
 
 </div>
 
+@endsection
+
+
+@section('jsblock')
+    <script src="{{asset('backend/assets/vendor/chartsjs/Chart.min.js')}}"></script>
+    <script src="{{asset('backend/assets/js/dashboard-charts.js')}}"></script>
+    {{-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script> --}}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        var months = <?php echo json_encode(array_values(month_arr()))?>;
+        new Morris.Line({
+
+            element: 'empStat',
+
+            data: <?php echo $total_chart?>,
+
+            xkey: 'month',
+
+            ykeys: ['jobPosted','jobApplied'],
+
+            labels: ['JOB POSTED','JOB APPLIED'],
+
+            xLabelFormat: function(x) { // <--- x.getMonth() returns valid index
+                var month = months[x.getMonth()];
+                return month;
+            },
+            dateFormat: function(x) {
+                var month = months[new Date(x).getMonth()];
+                return month;
+            },
+        });
+
+    });
+
+    </script>
 @endsection
 
 

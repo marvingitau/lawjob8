@@ -116,6 +116,29 @@
                 </select>
                 </div>
             </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                  <label for="">Reports to</label>
+                  <input type="text"
+                    class="form-control rounded-0" name="report_to" id="" aria-describedby="helpId" placeholder="Report to" required>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                  <label for="">Department</label>
+                  <input type="text"
+                    class="form-control rounded-0" name="department" id="" aria-describedby="helpId" placeholder="Department" required>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                  <label for="">Position</label>
+                  <input type="number"
+                    class="form-control rounded-0" name="position" id="" aria-describedby="helpId" placeholder="Position" min=1 required>
+                </div>
+            </div>
 
             <div class="col-md-12">
                 <h4>Job Summary</h4>

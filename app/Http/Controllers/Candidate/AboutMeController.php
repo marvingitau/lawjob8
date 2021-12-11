@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Candidate\AboutMe;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class AboutMeController extends Controller
 {
@@ -498,5 +499,35 @@ class AboutMeController extends Controller
     public function destroy(AboutMe $aboutMe)
     {
         //
+    }
+
+    /**
+     * Change the password
+     */
+
+    public function changePassword(Request $request)
+    {
+        $usr = auth()->user();
+        $data=$request->validate(
+            [
+                'old'=>'required',
+                'password'=>'required',
+                'password_confirm'=>'required'
+            ]
+            );
+
+            if($request['password_confirm'] != $request['password']){
+                return back()->with('message','Password missmatch');
+            }
+
+            if (Hash::check($data['old'], $usr->password)) {
+                $usr->fill([
+                 'password' => Hash::make($data['password'])
+                 ])->save();
+                return back()->with('message','Password changed');
+            }
+
+            return back()->with('message','Bad Old Password');
+
     }
 }

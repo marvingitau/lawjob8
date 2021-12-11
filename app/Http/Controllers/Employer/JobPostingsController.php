@@ -67,7 +67,10 @@ class JobPostingsController extends Controller
             'credit'=>'required',
             'monthly_salary'=>'',
             'job_category'=>'required',
-            'icon'=>''
+            'icon'=>'',
+            'position'=>'required',
+            'department'=>'required',
+            'report_to'=>'required'
         ]);
 
         $order_id  = $req['credit'];

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Employer;
 
+use Carbon\Carbon;
+use App\Models\Applied;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -18,12 +20,51 @@ class EmployerDashboardController extends Controller
     {
         $uid = auth()->user()->id;
         $jobIDs = JobPostings::where('user_id',$uid)->pluck('id')->toArray();
-
         $AppUserID = DB::table('applieds')->whereIn('job_id',$jobIDs)->count();
-
         $jCount=JobPostings::where('user_id',auth()->user()->id)->count();
-        return view('Backend.Employer.index',compact('jCount','AppUserID'));
+        $total_chart = $this->chartData();
+
+        return view('Backend.Employer.index',compact('jCount','AppUserID','total_chart'));
     }
+
+
+    public function chartData(){
+        $jobIDs = JobPostings::where('user_id',auth()->user()->id)->pluck('id')->toArray();
+        $jobPosted = JobPostings::where('user_id',auth()->user()->id)->whereYear('created_at', '=', date('Y'))->get()->groupBy(function($d) {
+            return $d->created_at->format('F');
+        });
+        $jobApplied = Applied::whereYear('created_at', '=', date('Y'))->whereIn('job_id',$jobIDs)->get()->groupBy(function($d) {
+            return $d->created_at->format('F');
+        });
+
+        // $candidate = User::where('role','candidate')->whereYear('created_at', '=', date('Y'))->get()->groupBy(function($d) {
+        //     return $d->created_at->format('F');
+        // });
+
+        // $orders = Order::whereYear('created_at', '=', date('Y'))->get()->groupBy(function($d) {
+        //     return $d->created_at->format('F');
+        // });
+
+        // $employers= User::where('role','employer')->whereYear('created_at', '=', date('Y'))->get()->groupBy(function($d) {
+        //     return $d->created_at->format('F');
+        // });
+
+
+        $monthly_chart =collect([]);
+        foreach (month_arr() as $key => $value) {
+            $monthly_chart->push([
+                'month' => Carbon::parse(date('Y').'-'.$key)->format('Y-m'),
+                'jobPosted' =>$jobPosted->has($value)?$jobPosted[$value]->count():0,
+                'jobApplied' =>$jobApplied->has($value)?$jobApplied[$value]->count():0,
+                // 'candidate' =>$candidate->has($value)?$candidate[$value]->count():0,
+                // 'orders' =>$orders->has($value)?$orders[$value]->count():0,
+                // 'employers' =>$employers->has($value)?$employers[$value]->count():0,
+            ]);
+
+        }
+        return response()->json($monthly_chart->toArray())->content();
+    }
+
 
     /**
      * Show the form for creating a new resource.

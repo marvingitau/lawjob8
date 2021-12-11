@@ -127,6 +127,10 @@ Route::group(['prefix'=>'candidate'],function(){
         Route::get('/Order/Forms', [OrderController::class,'index'])->name('candidate.order.forms');
         Route::post('/Order/Checkout', [OrderController::class,'create'])->name('candidate.checkout.cart');
         Route::get('/Order/Approved', [OrderController::class,'approved'])->name('candidate.checkout.approved');
+
+        Route::get('/Settings', [App\Http\Controllers\Candidate\SettingsController::class,'index'])->name('candidate.settings');
+        Route::post('/Password/Change', [AboutMeController::class,'changePassword'])->name('candidate.change.password');
+
         Route::group(['prefix' => '/payment'], function () {
             //PESAPAL
             Route::get('/', [App\Http\Controllers\Employer\PaymentController::class,'payment']);

@@ -41,19 +41,25 @@ banner -->
     <table class="table table-bordered my-md-4" id="jobList" width="100%" cellspacing="0">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Company</th>
+                <th>Job Title</th>
+                <th>Department</th>
+                {{-- <th>Company</th> --}}
                 <th>Location</th>
-                <th>Email</th>
+                {{-- <th>Email</th> --}}
+                <th>Position</th>
+                <th>Reports To</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tfoot>
             <tr>
-                <th>Name</th>
-                <th>Company</th>
+                <th>Job Title</th>
+                <th>Department</th>
+                {{-- <th>Company</th> --}}
                 <th>Location</th>
-                <th>Email</th>
+                {{-- <th>Email</th> --}}
+                <th>Position</th>
+                <th>Reports To</th>
                 <th>Action</th>
             </tr>
         </tfoot>
@@ -62,9 +68,12 @@ banner -->
                 @foreach ($jPosting as $jpost)
                 <tr>
                     <td>{{$jpost->title }}</td>
-                    <td>{{ !is_null(App\Models\User::where('id',$jpost->user_id)->first())?App\Models\User::where('id',$jpost->user_id)->first()->profile->company_name:'' }}</td>
+                    <td>{{$jpost->department }}</td>
+                    {{-- <td>{{ !is_null(App\Models\User::where('id',$jpost->user_id)->first())?App\Models\User::where('id',$jpost->user_id)->first()->profile->company_name:'' }}</td> --}}
                     <td>{{ !is_null(App\Models\User::where('id',$jpost->user_id)->first())?App\Models\User::where('id',$jpost->user_id)->first()->profile->location:'' }}</td>
-                    <td>{{ !is_null(App\Models\UserData::where('user_id',$jpost->user_id)->first())?App\Models\UserData::where('user_id',$jpost->user_id)->first()->employer_hr_email:'' }}</td>
+                    {{-- <td>{{ !is_null(App\Models\UserData::where('user_id',$jpost->user_id)->first())?App\Models\UserData::where('user_id',$jpost->user_id)->first()->employer_hr_email:'' }}</td> --}}
+                    <td>{{$jpost->position }}</td>
+                    <td>{{$jpost->report_to }}</td>
                     <td>
                         <a name="delete" id="" class="btn btn-primary" href="{{ route('jobSpecific',$jpost->id)}}" role="button">View <i class="fa fa-eye" aria-hidden="true"></i></a>
                     </td>

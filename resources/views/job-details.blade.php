@@ -51,9 +51,9 @@ banner -->
       @endif
         @if ($singleJob)
             <div class="d-flex">
-                <h2 class="my-3">{{ $singleJob['title'] }}</h2>
+                <h2 class="my-3">{{ !is_null($singleJob)?$singleJob['title']:'' }}</h2>
                 @if (Auth::check())
-                    <a name="" id="" class="btn btn-primary" style="padding: 25px 25px !important;margin-left: auto;" href="{{ route('apply.job',$singleJob['id'])}}" role="button">Apply <i class="fa fa-upload" aria-hidden="true"></i></a>
+                    <a name="" id="" class="btn btn-primary" style="padding: 25px 25px !important;margin-left: auto;" href="{{ route('apply.job',!is_null($singleJob)?$singleJob['id']:'')}}" role="button">Apply <i class="fa fa-upload" aria-hidden="true"></i></a>
                 @else
 
                 @endif
@@ -61,7 +61,7 @@ banner -->
             {{-- Job Summary --}}
             <h3 class="my-5">|&nbsp; Job Summary</h3>
             <div class="jsummary mb-4">
-                {!! $singleJob['job_summary']!!}
+                {!! !is_null($singleJob)?$singleJob['job_summary']:''!!}
             </div>
 
             <h3 class="my-5">|&nbsp; Job Description</h3>
@@ -69,10 +69,10 @@ banner -->
                 {!! $singleJob['job_description']!!}
             </div>
 
-            <h5 class="my-5">+ &nbsp; For Query</h5>
+            {{-- <h5 class="my-5">+ &nbsp; For Query</h5>
             <div class="jsummary mb-4">
-                {{ \App\Models\User::where('id',$singleJob->user_id)->first()->userData->employer_hr_email}}
-            </div>
+                {{ !is_null(\App\Models\User::where('id',$singleJob->user_id)->first())?\App\Models\User::where('id',$singleJob->user_id)->first()->userData->employer_hr_email:''}}
+            </div> --}}
 
 
         @else
