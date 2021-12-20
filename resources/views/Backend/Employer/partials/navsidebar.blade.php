@@ -6,6 +6,8 @@
         <li>
             <a href="{{ route('employer.dashboard') }}"><i class="fas fa-home"></i> Dashboard</a>
         </li>
+        @if(auth()->user()->role=='employer' && auth()->user()->approved == 0)
+        @else
         <li>
             <a href="#jobpost" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle no-caret-down"><i class="fas fa-edit"></i> Job Post</a>
             <ul class="collapse list-unstyled" id="jobpost">
@@ -18,12 +20,10 @@
 
             </ul>
         </li>
-
-
         <li>
             <a href="{{ route('order.forms') }}"><i class="fas fa-credit-card"></i> Create Credit</a>
         </li>
-
+        @endif
         <li>
             <a href="{{ route('job.application') }}"><i class="fas fa-list"></i> Application List</a>
         </li>

@@ -24,8 +24,8 @@
     <div class="row">
         @if ($tokens)
             @foreach ($tokens as $token)
-            <div class="col-lg-12">
-                <div class="card">
+            <div class="col-md-6 col-lg-4">
+                <div class="card token">
                     <div class="card-header">Credit Creation</div>
                     <div class="card-body d-flex">
                         <div class="details">
@@ -47,7 +47,9 @@
                                     <input type="hidden" name="quantity" placeholder="Token" class="form-control" min=1 required value="{{$token['quantity']}}">
                                 {{-- </div> --}}
                                 <div class="form-group">
+                                    @if(auth()->user()->role=='employer' && auth()->user()->approved != 0)
                                     <input type="submit" class="btn btn-primary" value="Order">
+                                    @endif
                                 </div>
                             </form>
                         </div>

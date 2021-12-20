@@ -43,9 +43,9 @@ Footer-->
           <div class="footer-contact-info bg-holder" style="background-image: url(images/google-map.png);">
             <h5 class="text-dark mb-4">Contact Us</h5>
             <ul class="list-unstyled mb-0">
-              <li> <i class="fas fa-map-marker-alt text-primary"></i><span>214 West Arnold St. New York, NY 10002</span> </li>
-              <li> <i class="fas fa-mobile-alt text-primary"></i><span>+(123) 345-6789</span> </li>
-              <li> <i class="far fa-envelope text-primary"></i><span>support@jobber.demo</span> </li>
+              <li> <i class="fas fa-map-marker-alt text-primary"></i><span>Karen Nairobi Kenya</span> </li>
+              <li> <i class="fas fa-mobile-alt text-primary"></i><span>+254 0123 456 789</span> </li>
+              <li> <i class="far fa-envelope text-primary"></i><span>hello@pupool.ke</span> </li>
             </ul>
           </div>
         </div>
@@ -61,18 +61,30 @@ Footer-->
     <div class="footer-bottom">
       <div class="container">
         <div class="row">
-          <div class="col-md-8 text-center text-md-start">
-            <p class="mb-0"> &copy;Copyright <span id="copyright"> <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script></span> <a href="#"> Lawjob </a> All Rights Reserved </p>
+          <div class="col-md-9 text-center text-md-start">
+            <p class="mb-0"> &copy;Copyright <span id="copyright"> <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script></span> <a href="#">pupool </a> All Rights Reserved </p>
           </div>
-          <div class="col-md-4 mt-4 mt-md-0">
-            <div class="social d-flex justify-content-lg-end justify-content-center">
-              <ul class="list-unstyled">
-                <li class="facebook"><a href="#">FB</a></li>
-                <li class="twitter"><a href="#">TW</a></li>
-                <li class="linkedin"><a href="#">IN</a></li>
-              </ul>
-            </div>
+              <div class="col-md-3 mt-4 mt-md-0">
+                <div class="social d-flex justify-content-lg-end justify-content-center">
+                  <ul class="list-unstyled">
+                    <li class="facebook"><a href="#"><i class="fab fa-facebook"></i></a></li>
+                    <li class="twitter"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li class="linkedin"><a href="#"><i class="fab fa-instagram"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+
           </div>
+		  <div class="row">
+		      <div class="col-md-8"></div>
+		        <div class="col-md-4">
+    			<div class="built-by d-flex justify-content-end">
+    		    <span> Design & Built By <a href="https://arkitech.co.ke" style="color:unset;">ARKITECH</a> </span>
+    			</div>
+    			</div>
+
+
+		  </div>
         </div>
       </div>
     </div>

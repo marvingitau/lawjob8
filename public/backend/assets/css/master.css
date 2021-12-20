@@ -206,6 +206,23 @@ body {
 /*------------------------------------------------------------------
 [7. Dashboard Cards / .card]
 */
+.card.token {
+    margin-bottom: 15px;
+    box-shadow: rgba(45, 122, 221, 0.73) -2px 0px 1px 1px;
+}
+.card.token:hover{
+    box-shadow: rgba(139, 164, 196, 0.73) 4px 4px 3px 1px;
+    transform: scale(1.05);
+    transition: all ease-in-out .5s;
+}
+.card.token:hover .btn.btn-primary{
+background-color: #151515;
+color: white;
+    transition: all ease-in-out .2s;
+    border-color:rgba(255, 255, 255, 0);
+}
+
+
 .card {
     margin-bottom: 15px;
     box-shadow: rgba(35, 46, 60, 0.04) 0 2px 4px 0;
