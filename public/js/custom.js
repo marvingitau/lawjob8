@@ -92,8 +92,10 @@ NOTE: This file contains all scripts for the actual Template.
 		$(window).scroll( function(){
 			if ($(this).scrollTop() > 150) {
 				$('.header-sticky').addClass('is-sticky');
+                $('#fluidLogo').attr('src','/images/RevisedPupillageLogo1.png');
 			} else {
 				$('.header-sticky').removeClass('is-sticky');
+                $('#fluidLogo').attr('src','/images/RevisedPupillageLogo2.png');
 			}
 		});
 	};

@@ -9,7 +9,7 @@
                     <span></span>
                 </button>
                 <a class="navbar-brand" href="{{ url("/")}}">
-                <img class="img-fluid" src="{{asset('images/log.png')}}" alt="logo">
+                    <img class="img-fluid" src="/images/RevisedPupillageLogo2.png" id="fluidLogo" alt="logo">
                 </a>
                 <div class="navbar-collapse collapse d-md-flex">
                     {{-- Left Side --}}

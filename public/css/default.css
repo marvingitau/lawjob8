@@ -2354,13 +2354,16 @@ body {
     border-bottom-color: #ffffff; }
 
   .navbar-brand {
-    padding: 24px 0px;
+    /* padding: 24px 0px; */
+    padding: 7px 0px;
     margin-right: 0;
     -webkit-box-flex: 0;
         -ms-flex: 0 0 180px;
             flex: 0 0 180px; }
     .navbar-brand img {
-      height: 28px; }
+      /* height: 28px;  */
+      height: 78px;
+    }
 
   .header .navbar-nav > li {
     display: -webkit-box;

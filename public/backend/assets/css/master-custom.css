@@ -1,8 +1,10 @@
 #sidebar .sidebar-header {
   padding: 0.5rem 1rem !important;
+  text-align: center;
 }
 
 #sidebar .sidebar-header .app-logo {
-  width: 100% !important;
+  width: auto !important;
+  height: 85px;
 }
 /*# sourceMappingURL=master-custom.css.map */

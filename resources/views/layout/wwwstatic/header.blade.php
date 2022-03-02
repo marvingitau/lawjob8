@@ -1,4 +1,4 @@
-    <!-- ================================= Header
+    <!-- ================================= Header logged in
     -->
     <header class="header header-transparent">
         <nav class="navbar navbar-static-top navbar-expand-lg navbar-light header-sticky">
@@ -9,7 +9,7 @@
                     <span></span>
                 </button>
                 <a class="navbar-brand" href="{{ url("/")}}">
-                <img class="img-fluid" src="images/log.png" alt="logo">
+                <img class="img-fluid" src="/images/RevisedPupillageLogo2.png" id="fluidLogo" alt="logo">
                 </a>
                 <div class="navbar-collapse collapse d-md-flex">
                     {{-- Left Side --}}
