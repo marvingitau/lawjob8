@@ -21,8 +21,16 @@ class PaymentController extends Controller
     public function payment(Request $request){//initiates payment
         $orderItems= compact($request->all());
         $orderSumCost = Order::where('session_id',Session::get('emp_session_id'))->where('order_verify',0)->sum('grand_total');
+        $orderInQuestion = Order::where('session_id',Session::get('emp_session_id'))->where('order_verify',0)->first();
+
+        /**
+         * UNTIL PESAPAL IS UPGRADED TO PREMIER- SUPPORT TRANSACTION ABOVE 1000
+         */
         if($orderSumCost>1000){
-            return back()->with('message','Exceeds 1000');
+
+            $orderInQuestion->delete();
+
+            return back()->with('message','Exceeds 1000 & Removed from Order');
         }
         $orderData = Order::where('session_id',Session::get('emp_session_id'))->first();
 
@@ -41,43 +49,48 @@ class PaymentController extends Controller
         $payments -> save();
 
 
-        if(auth()->user()->role == 'employer'){
-        $details = array(
-            'amount' => $payments -> amount,
-            'description' => 'Transaction',
-            'type' => 'MERCHANT',
-            'first_name' => auth()->user()->userData->first_name,
-            'last_name' => auth()->user()->userData->last_name,
-            'email' => auth()->user()->email,
-            'phonenumber' => '254-'.auth()->user()->userData->phone,
-            'reference' => $payments -> transactionid,
-            'height'=>'400px',
-            'currency' => env('PESAPAL_CURRENCY')
-        );
-        }else{
-            $user=DB::table('about_mes')->where('user_id',auth()->user()->id)->first();
-            $details = array(
-                'amount' => $payments -> amount,
-                'description' => 'Transaction',
-                'type' => 'MERCHANT',
-                'first_name' => $user->fname,
-                'last_name' => $user->lname,
-                'email' => auth()->user()->email,
-                'phonenumber' => '254-'.$user->phone,
-                'reference' => $payments -> transactionid,
-                'height'=>'500px',
-                'currency' => env('PESAPAL_CURRENCY')
-            );
+        try {
+            if(auth()->user()->role == 'employer'){
+                $details = array(
+                    'amount' => $payments -> amount,
+                    'description' => 'Transaction',
+                    'type' => 'MERCHANT',
+                    'first_name' => auth()->user()->userData->first_name,
+                    'last_name' => auth()->user()->userData->last_name,
+                    'email' => auth()->user()->email,
+                    'phonenumber' => '254-'.auth()->user()->userData->phone,
+                    'reference' => $payments -> transactionid,
+                    'height'=>'400px',
+                    'currency' => env('PESAPAL_CURRENCY')
+                );
+                }else{
+                    $user=DB::table('about_mes')->where('user_id',auth()->user()->id)->first();
+                    $details = array(
+                        'amount' => $payments -> amount,
+                        'description' => 'Transaction',
+                        'type' => 'MERCHANT',
+                        'first_name' => $user->fname,
+                        'last_name' => $user->lname,
+                        'email' => auth()->user()->email,
+                        'phonenumber' => '254-'.$user->phone,
+                        'reference' => $payments -> transactionid,
+                        'height'=>'500px',
+                        'currency' => env('PESAPAL_CURRENCY')
+                    );
+                }
+
+                $iframe=Pesapal::makePayment($details);
+
+                // dd($iframe);
+                if(auth()->user()->role == 'employer'){
+                return view('Backend.Employer.Order.Payment', compact('iframe'));
+                }else{
+                return view('Backend.Candidate.Order.Payment', compact('iframe'));
+                }
+        } catch (\Throwable $th) {
+            return back()->with('message',$th->getMessage());
         }
 
-        $iframe=Pesapal::makePayment($details);
-
-        // dd($iframe);
-        if(auth()->user()->role == 'employer'){
-        return view('Backend.Employer.Order.Payment', compact('iframe'));
-        }else{
-        return view('Backend.Candidate.Order.Payment', compact('iframe'));
-        }
     }
 
 
