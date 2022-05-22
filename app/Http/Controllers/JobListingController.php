@@ -48,7 +48,11 @@ class JobListingController extends Controller
     public function show($id)
     {
         $singleJob =  JobPostings::findOrFail($id);
-        return view('job-details',compact('singleJob'));
+        if(auth()->check()){
+            return view('job-details',compact('singleJob'));
+        }else{
+            return redirect()->to('/login');
+        }
     }
 
     public function search(Request $request)
