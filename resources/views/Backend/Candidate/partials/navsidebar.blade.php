@@ -1,6 +1,8 @@
 <nav id="sidebar" class="active">
     <div class="sidebar-header">
-        <img src="{{ asset('backend/assets/img/dashboard-logo.png') }}" alt="bootraper logo" class="app-logo">
+        <a href="{{ route("welcome")}}" style="text-decoration: none;color:unset;">
+            <img src="{{ asset('backend/assets/img/dashboard-logo.png') }}" alt="bootraper logo" class="app-logo">
+        </a>
     </div>
     <ul class="list-unstyled components text-secondary">
         <li class="nav-item active">
