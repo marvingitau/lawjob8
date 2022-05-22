@@ -6,7 +6,7 @@
             <li class="nav-item dropdown">
                 <div class="nav-dropdown">
                     {{-- <a href="" class="nav-item nav-link dropdown-toggle text-secondary" data-toggle="dropdown"><i class="fas fa-link"></i> <span>Quick Access</span> <i style="font-size: .8em;" class="fas fa-caret-down"></i></a> --}}
-                    <a href="{{ route('candidate.view.cart') }}" class="nav-item nav-link dropdown-toggle text-secondary"><i class="fas fa-shopping-cart"></i> Access Cart &nbsp; <span class="count_ize">{{ Cart::getContent()->count() }}</span>
+                    {{-- <a href="{{ route('candidate.view.cart') }}" class="nav-item nav-link dropdown-toggle text-secondary"><i class="fas fa-shopping-cart"></i> Access Cart &nbsp; <span class="count_ize">{{ Cart::getContent()->count() }}</span> --}}
                     <div class="dropdown-menu dropdown-menu-right nav-link-menu">
                         <ul class="nav-list">
                             <li><a href="{{ route('candidate.view.cart') }}" class="dropdown-item"><i class="fas fa-shopping-cart"></i> Access Cart &nbsp; <span class="count_ize">{{ Cart::getContent()->count() }}</span> </a>
